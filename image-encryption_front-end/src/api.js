@@ -14,20 +14,22 @@ export function logout() {
   localStorage.removeItem("token");
 }
 
-export function login(username, password) {
+export function loginUser(username, password) {
   return loginRegister(username, password, "login");
 }
 
-export function register(username, password) {
+export function registerUser(username, password) {
   return loginRegister(username, password, "register");
 }
 
 function loginRegister(username, password, type) {
-  return axios.post(`/${type}`, { username, password }).then((response) => {
-    if (response.data.token) {
-      localStorage.setItem("token", response.data.token);
-    }
+  return axios
+    .post(`http://localhost:8393/${type}`, { username, password })
+    .then((response) => {
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token);
+      }
 
-    return response.data;
-  });
+      return response;
+    });
 }
