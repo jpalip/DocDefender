@@ -14,14 +14,6 @@ export function logout() {
   localStorage.removeItem("token");
 }
 
-export function loginUser(username, password) {
-  return loginRegister(username, password, "login");
-}
-
-export function registerUser(username, password) {
-  return loginRegister(username, password, "register");
-}
-
 function loginRegister(username, password, type) {
   return axios
     .post(`http://localhost:8393/${type}`, { username, password })
@@ -32,4 +24,31 @@ function loginRegister(username, password, type) {
 
       return response;
     });
+}
+
+export function loginUser(username, password) {
+  return loginRegister(username, password, "login");
+}
+
+export function registerUser(username, password) {
+  return loginRegister(username, password, "register");
+}
+
+export function getImages() {
+  return axios
+    .get("http://localhost:8393/images", {
+      headers: authHeader(),
+    })
+    .catch((error) => {
+      if (error.response.status === 401 || error.response.status === 403) {
+        return { success: false };
+      }
+    })
+    .then((response) => {
+      return response;
+    });
+}
+
+export function loggedIn() {
+  return localStorage.getItem("token") !== null;
 }
