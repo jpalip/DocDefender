@@ -11,14 +11,12 @@ export default async (req, res) => {
 
   if (username.length < 3) {
     res
-      .status(400)
       .json({ error: "Username must be greater than 2 characters" });
     return;
   }
 
   if (password.length < 5) {
     res
-      .status(400)
       .json({ error: "Password must be greater than 5 characters" });
     return;
   }
@@ -28,7 +26,7 @@ export default async (req, res) => {
       where: { username },
     })
   ) {
-    res.status(400).json({ error: "Username already exists" });
+    res.json({ error: "Username already exists" });
     return;
   }
 
@@ -39,5 +37,5 @@ export default async (req, res) => {
     },
   });
 
-  res.status(200).json({ id: user.id });
+  res.json({ id: user.id });
 };
