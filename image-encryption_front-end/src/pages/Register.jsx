@@ -1,4 +1,4 @@
-import { registerUser } from "../api";
+import { loggedIn, registerUser } from "../api";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -19,7 +19,7 @@ export default function Register() {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    if (loggedIn()) {
       navigate("/user");
     } else {
       setRender(true);
