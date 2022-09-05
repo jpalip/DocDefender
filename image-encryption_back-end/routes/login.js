@@ -1,5 +1,6 @@
 import argon2 from "argon2";
 import {prisma} from "../index.js";
+import jwt from "jsonwebtoken";
 
 export default async (req, res) => {
   const user = await prisma.user.findUnique({
@@ -10,5 +11,9 @@ export default async (req, res) => {
     return res.json({ error: "Username or password is incorrect" });
   }
 
-  res.json({ id: user.id });
+  const token = jwt.sign({ id: user.id }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: 86400
+  });
+
+  res.json({ success: "Successfully logged in", token });
 };

@@ -1,5 +1,6 @@
 import argon2 from "argon2";
 import {prisma} from "../index.js";
+import jwt from "jsonwebtoken";
 
 export default async (req, res) => {
   const { username, password } = req.body;
@@ -37,5 +38,9 @@ export default async (req, res) => {
     },
   });
 
-  res.json({ id: user.id });
+  const token = jwt.sign({ id: user.id }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: 86400
+  });
+
+  res.json({ success: "User created successfully", token });
 };
