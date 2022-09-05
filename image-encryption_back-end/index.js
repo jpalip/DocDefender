@@ -1,14 +1,22 @@
 import express from "express";
 import argon2 from "argon2";
+import cors from "cors";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 const main = async () => {
   const app = express();
+
+  app.use(
+    cors({
+      origin: "http://localhost:3000",
+    })
+  );
+
   app.use(express.json());
 
-  app.post("/createUser", async (req, res) => {
+  app.post("/register", async (req, res) => {
     const { username, password } = req.body;
 
     if (username === undefined || password === undefined) {
@@ -50,7 +58,15 @@ const main = async () => {
   });
 
   app.post("/login", async (req, res) => {
-    return res.send(200);
+    const user = await prisma.user.findUnique({
+      where: { username: req.body.username },
+    });
+
+    if (!user || !(await argon2.verify(user.password, req.body.password))) {
+      return res.json({ error: "Username or password is incorrect" });
+    }
+
+    res.json({ id: user.id });
   });
 
   app.post("/logout", async (req, res) => {
