@@ -3,7 +3,8 @@ import cors from "cors";
 import { PrismaClient } from "@prisma/client";
 import register from "./routes/register.js";
 import login from "./routes/login.js";
-import logout from "./routes/logout.js";
+import verifyAuth from "./middleware/verifyAuth.js";
+import images from "./routes/images.js";
 
 export const prisma = new PrismaClient();
 
@@ -18,9 +19,9 @@ const main = async () => {
 
   app.use(express.json());
 
-  app.post("/register", register);
   app.post("/login", login);
-  app.post("/logout", logout);
+  app.post("/register", register);
+  app.get("/images", verifyAuth, images);
 
   app.listen(8393, () => console.log("Listening on port 8393"));
 };
