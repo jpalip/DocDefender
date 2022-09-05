@@ -1,8 +1,10 @@
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import SignIn from "./pages/Sign-In";
+import Register from "./pages/Register";
 import { Route, Routes } from "react-router-dom";
+import User from "./pages/User";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/user" element={<User />} />
         </Routes>
       </div>
     </>
