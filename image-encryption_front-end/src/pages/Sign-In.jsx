@@ -1,10 +1,11 @@
-import { loggedIn, loginUser } from "../api";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useAuth } from "../hooks/hooks";
 
 export default function SignIn() {
   const navigate = useNavigate();
-  const [render, setRender] = useState(false);
+
+  const { authed, useRedirectIfAuthed, loginUser } = useAuth();
+  useRedirectIfAuthed("/user");
 
   const login = (e) => {
     e.preventDefault();
@@ -18,26 +19,18 @@ export default function SignIn() {
     });
   };
 
-  useEffect(() => {
-    if (loggedIn()) {
-      navigate("/user");
-    } else {
-      setRender(true);
-    }
-  }, [navigate]);
-
   return (
-    render && (
+    !authed() && (
       <div>
         <h1>Sign In</h1>
         <form onSubmit={login}>
           <div className="form-control">
             <label htmlFor="username">Username</label>
-            <input type="username" id="username" />
+            <input type="username" id="username" autoComplete="ie-username" />
           </div>
           <div className="form-control">
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" />
+            <input type="password" id="password" autoComplete="ie-password" />
           </div>
           <button type="submit">Sign In</button>
         </form>

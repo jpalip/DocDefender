@@ -1,9 +1,9 @@
-import { Link, useMatch, useNavigate, useResolvedPath } from "react-router-dom";
+import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import { loggedIn, logout } from "../api";
+import { useAuth } from "../hooks/hooks";
 
 export default function Navbar() {
-  const navigate = useNavigate();
+  const { authed, logoutUser } = useAuth();
 
   return (
     <nav className="nav">
@@ -12,15 +12,9 @@ export default function Navbar() {
       </Link>
       <ul>
         <CustomLink to="/about">About</CustomLink>
-        <CustomLink to="/sign-in">Sign In</CustomLink>
-        {loggedIn() && (
-          <Button
-            variant="primary"
-            onClick={() => {
-              logout();
-              navigate(0);
-            }}
-          >
+        {authed() || <CustomLink to="/sign-in">Sign In</CustomLink>}
+        {authed() && (
+          <Button variant="primary" onClick={logoutUser}>
             Logout
           </Button>
         )}

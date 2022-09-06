@@ -1,24 +1,19 @@
-import { getImages, loggedIn } from "../api";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/hooks";
 
 export default function User() {
-  const navigate = useNavigate();
   const [images, setImages] = useState([]);
 
-  useEffect(() => {
-    if (!loggedIn()) {
-      navigate("/sign-in");
-    }
+  const { useRedirectIfNotAuthed, getImages } = useAuth();
+  useRedirectIfNotAuthed("/sign-in");
 
+  useEffect(() => {
     getImages().then((r) => {
       if (r.data) {
         setImages(r.data);
-      } else {
-        navigate("/sign-in");
       }
     });
-  }, [navigate]);
+  });
 
   return (
     <div>
