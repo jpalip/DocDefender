@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 
+const API_URL = "http://localhost:8393";
+
 export const useAuth = () => {
   const navigate = useNavigate();
 
@@ -22,7 +24,7 @@ export const useAuth = () => {
 
   function loginRegister(username, password, type) {
     return axios
-      .post(`http://localhost:8393/${type}`, { username, password })
+      .post(`${API_URL}/${type}`, { username, password })
       .then((response) => {
         if (response.data.token) {
           localStorage.setItem("token", response.data.token);
@@ -50,7 +52,7 @@ export const useAuth = () => {
 
   function getImages() {
     return axios
-      .get("http://localhost:8393/images", {
+      .get(`${API_URL}/images`, {
         headers: authHeader(),
       })
       .catch(handleErrorResponse)
