@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/hooks";
-import { useEffect } from "react";
 
 export default function SignIn() {
   const navigate = useNavigate();
 
-  const { authed, redirectIfAuthed, loginUser } = useAuth();
+  const { authed, useRedirectIfAuthed, loginUser } = useAuth();
+  useRedirectIfAuthed("/user");
 
   const login = (e) => {
     e.preventDefault();
@@ -18,10 +18,6 @@ export default function SignIn() {
       }
     });
   };
-
-  useEffect(() => {
-    redirectIfAuthed("/user");
-  });
 
   return (
     !authed() && (

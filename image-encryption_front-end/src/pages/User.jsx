@@ -4,11 +4,10 @@ import { useAuth } from "../hooks/hooks";
 export default function User() {
   const [images, setImages] = useState([]);
 
-  const { redirectIfNotAuthed, getImages } = useAuth();
+  const { useRedirectIfNotAuthed, getImages } = useAuth();
+  useRedirectIfNotAuthed("/sign-in");
 
   useEffect(() => {
-    redirectIfNotAuthed("/sign-in");
-
     getImages().then((r) => {
       if (r.data) {
         setImages(r.data);

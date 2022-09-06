@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useEffect } from "react";
 
 export const useAuth = () => {
   const navigate = useNavigate();
@@ -62,22 +63,26 @@ export const useAuth = () => {
     return localStorage.getItem("token") !== null;
   }
 
-  function redirectIfAuthed(href) {
-    if (authed()) {
-      navigate(href);
-    }
+  function useRedirectIfAuthed(href) {
+    useEffect(() => {
+      if (authed()) {
+        navigate(href);
+      }
+    });
   }
 
-  function redirectIfNotAuthed(href) {
-    if (!authed()) {
-      navigate(href);
-    }
+  function useRedirectIfNotAuthed(href) {
+    useEffect(() => {
+      if (!authed()) {
+        navigate(href);
+      }
+    });
   }
 
   return {
     authed,
-    redirectIfAuthed,
-    redirectIfNotAuthed,
+    useRedirectIfAuthed,
+    useRedirectIfNotAuthed,
     loginUser,
     registerUser,
     logoutUser,

@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/hooks";
-import { useEffect } from "react";
 
 export default function Register() {
   const navigate = useNavigate();
 
-  const { authed, redirectIfAuthed, registerUser } = useAuth();
+  const { authed, useRedirectIfAuthed, registerUser } = useAuth();
+  useRedirectIfAuthed("/user");
 
   const register = (e) => {
     e.preventDefault();
@@ -18,10 +18,6 @@ export default function Register() {
       }
     });
   };
-
-  useEffect(() => {
-    redirectIfAuthed("/user");
-  });
 
   return (
     !authed() && (
