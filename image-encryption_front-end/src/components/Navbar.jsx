@@ -8,9 +8,11 @@ export default function Navbar() {
   return (
     <nav className="nav">
       <Link to="/" className="site-title">
-        Image Encryption
+        DocDefender
       </Link>
       <ul>
+        <CustomLink to="/">Home</CustomLink>
+        <CustomLink to="/user">Account</CustomLink>
         <CustomLink to="/about">About</CustomLink>
         {authed() || <CustomLink to="/sign-in">Sign In</CustomLink>}
         {authed() && (
