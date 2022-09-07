@@ -19,6 +19,16 @@ export default function User() {
     <div>
       <h1>Images</h1>
       <div className="images">
+        <br />
+        <p>Upload a file here to encrypt: </p>
+        <form>
+          <input type="file" id="myFile" name="filename" />
+          <input type="submit" />
+        </form>
+        <br />
+        <br />
+        <br />
+        <p>Your encrypted documents will be displayed here: </p>
         {images.map((image, i) => (
           <div className="image" key={i}>
             <h2>{image.title || "Untitled"}</h2>
