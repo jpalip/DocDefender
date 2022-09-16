@@ -17,10 +17,12 @@ export default function User() {
 
   return (
     <div>
-      <h1>Images</h1>
+      <h1><u>File Vault</u></h1>
       <div className="images">
         <br />
-        <p>Upload a file here to encrypt: </p>
+        <h5>Upload a file here to encrypt: </h5>
+        <br />
+        <br />
         <form>
           <input type="file" id="myFile" name="filename" />
           <input type="submit" />
@@ -28,7 +30,9 @@ export default function User() {
         <br />
         <br />
         <br />
-        <p>Your encrypted documents will be displayed here: </p>
+        <h5>Your encrypted documents will be displayed here: </h5>
+        <br />
+        <br />
         {images.map((image, i) => (
           <div className="image" key={i}>
             <h2>{image.title || "Untitled"}</h2>

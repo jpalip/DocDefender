@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import {prisma} from "../index.js";
 
 export default (req, res, next) => {
   const token = req.headers["x-access-token"];
