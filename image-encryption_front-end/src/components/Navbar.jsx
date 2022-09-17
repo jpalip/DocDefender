@@ -11,7 +11,6 @@ export default function Navbar() {
         DocDefender
       </Link>
       <ul>
-        <CustomLink>Test</CustomLink>
         <CustomLink to="/">Home</CustomLink>
         <CustomLink to="/user">Account</CustomLink>
         <CustomLink to="/about">About</CustomLink>
