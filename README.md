@@ -5,7 +5,7 @@ https://www.postgresql.org/download/
 # First clone the repository
 
 # Second create a file in the backend folder called .env and paste this code:
-DATABASE_URL="postgresql://postgres:Jaxalip123!@localhost:5432/image-encryption?schema=public"          
+DATABASE_URL="postgresql://postgres:<your PGAdmin4 password>@localhost:5432/image-encryption?schema=public"          
 ACCESS_TOKEN_SECRET=SecretElOhEl
 
 # Make sure you have Postgres installed and connect to the database with the password "Jaxalip123!" and ensure its running locally
