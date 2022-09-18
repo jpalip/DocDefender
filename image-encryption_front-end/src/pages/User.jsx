@@ -17,7 +17,9 @@ export default function User() {
 
   return (
     <div>
-      <h1><u>File Vault</u></h1>
+      <h1>
+        <u>File Vault</u>
+      </h1>
       <div className="images">
         <br />
         <h5>Upload a file here to encrypt: </h5>
@@ -34,9 +36,15 @@ export default function User() {
         <br />
         <br />
         {images.map((image, i) => (
-          <div className="image" key={i}>
+          <div className="container" key={i}>
             <h2>{image.title || "Untitled"}</h2>
-            <img src={image.url} alt={image.title} />
+            <br />
+            <div className="image-list">
+              <img src={image.url} alt={image.title} />
+            </div>
+            <div className="overlay">
+              <div className="text">test text</div>
+            </div>
           </div>
         ))}
       </div>
