@@ -14,13 +14,8 @@ ACCESS_TOKEN_SECRET=SecretElOhEl
 
 To connect to the database open up PGAdmin4 and create a new database called image-encryption
 Then in terminal CD into your backend folder and run the command  
-<<<<<<< HEAD
 npx prisma db push  
-=======
-npx prisma migrate dev --name init
-
-> > > > > > > f811600620df919f61817abb5fd08b2d93a2e3a5
-> > > > > > > This command will auto-generate the database tables from our schema.prisma
+This command will auto-generate the database tables from our schema.prisma
 
 # Then cd into the front end folder
 
