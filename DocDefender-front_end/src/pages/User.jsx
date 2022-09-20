@@ -31,6 +31,12 @@ export default function User() {
         </form>
         <br />
         <br />
+        <h5>Search for a user to give access to:</h5>
+        <br />
+        <div>
+          <input type ="text" placeholder="Search for user..."/>
+        </div>
+        <br />
         <br />
         <h5>Your encrypted documents will be displayed here: </h5>
         <br />
