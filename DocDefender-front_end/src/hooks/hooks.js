@@ -50,6 +50,17 @@ export const useAuth = () => {
     return error;
   }
 
+  function getUsername() {
+    return axios
+      .get(`${API_URL}/getUsername`, {
+        headers: authHeader(),
+      })
+      .catch(handleErrorResponse)
+      .then((response) => {
+        return response;
+      });
+  }
+
   function getImages() {
     return axios
       .get(`${API_URL}/images`, {
@@ -89,5 +100,6 @@ export const useAuth = () => {
     registerUser,
     logoutUser,
     getImages,
+    getUsername,
   };
 };

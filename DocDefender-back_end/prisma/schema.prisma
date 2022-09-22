@@ -12,10 +12,10 @@ model User {
   username  String  @unique
   password  String
   admin     Boolean @default(false)
-  images Image[]
+  file File[]
 }
 
-model Image {
+model File {
   id        Int     @id @default(autoincrement())
   title     String?
   url       String

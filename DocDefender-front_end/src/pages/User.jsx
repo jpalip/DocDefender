@@ -13,7 +13,7 @@ export default function User() {
         setImages(r.data);
       }
     });
-  });
+  }, [getImages]);
 
   return (
     <div>
@@ -34,7 +34,7 @@ export default function User() {
         <h5>Search for a user to give access to:</h5>
         <br />
         <div>
-          <input type ="text" placeholder="Search for user..."/>
+          <input type="text" placeholder="Search for user..." />
         </div>
         <br />
         <br />

@@ -1,9 +1,19 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/hooks";
 
 export default function Navbar() {
-  const { authed, logoutUser } = useAuth();
+  const { getUsername, authed, logoutUser } = useAuth();
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    getUsername().then((r) => {
+      if (r.data) {
+        setUsername(r.data.username);
+      }
+    });
+  }, [getUsername]);
 
   return (
     <nav className="nav">
@@ -17,7 +27,7 @@ export default function Navbar() {
         {authed() || <CustomLink to="/sign-in">Sign In</CustomLink>}
         {authed() && (
           <Button variant="primary" onClick={logoutUser}>
-            Logout
+            Logout: {username}
           </Button>
         )}
       </ul>
