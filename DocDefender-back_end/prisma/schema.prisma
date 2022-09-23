@@ -8,17 +8,17 @@ datasource db {
 }
 
 model User {
-  id        Int     @id @default(autoincrement())
-  username  String  @unique
-  password  String
-  admin     Boolean @default(false)
-  file File[]
+  id       Int     @id @default(autoincrement())
+  username String  @unique
+  password String
+  admin    Boolean @default(false)
+  file     File[]
 }
 
 model File {
-  id        Int     @id @default(autoincrement())
-  title     String?
-  url       String
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
+  id       Int     @id @default(autoincrement())
+  title    String?
+  url      String
+  author   User[]
+  authorId Int
 }

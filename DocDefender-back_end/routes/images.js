@@ -5,7 +5,11 @@ export default async function (req, res) {
 
   const images = await prisma.file.findMany({
     where: {
-      authorId: id,
+      author: {
+        some: {
+          id,
+        },
+      },
     },
   });
 
