@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../hooks/hooks";
+import useAuth from "../hooks/hooks";
 
 export default function User() {
   const [images, setImages] = useState([]);

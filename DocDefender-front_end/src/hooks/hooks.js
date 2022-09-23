@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 const API_URL = "http://localhost:8393";
 
-export const useAuth = () => {
+export default () => {
   const navigate = useNavigate();
 
   function authHeader() {

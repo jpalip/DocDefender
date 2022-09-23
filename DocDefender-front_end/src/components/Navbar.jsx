@@ -1,19 +1,22 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
-import { useAuth } from "../hooks/hooks";
+import useAuth from "../hooks/hooks";
 
 export default function Navbar() {
   const { getUsername, authed, logoutUser } = useAuth();
   const [username, setUsername] = useState("");
 
   useEffect(() => {
+    if (!authed()) {
+      return;
+    }
     getUsername().then((r) => {
       if (r.data) {
         setUsername(r.data.username);
       }
     });
-  }, []);
+  }, [getUsername, authed]);
 
   return (
     <nav className="nav">
@@ -22,7 +25,7 @@ export default function Navbar() {
       </Link>
       <ul>
         <CustomLink to="/">Home</CustomLink>
-        <CustomLink to="/user">Account</CustomLink>
+        <CustomLink to="/user">My Files</CustomLink>
         <CustomLink to="/about">About</CustomLink>
         {authed() || <CustomLink to="/sign-in">Sign In</CustomLink>}
         {authed() && (
