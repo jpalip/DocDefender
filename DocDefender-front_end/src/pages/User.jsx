@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import useAuth from "../hooks/hooks";
+import Button from "react-bootstrap/Button";
 
 export default function User() {
   const [images, setImages] = useState([]);
+  const [matches, setMatches] = useState([]);
 
   const { useRedirectIfNotAuthed, getImages, searchUser } = useAuth();
   useRedirectIfNotAuthed("/sign-in");
@@ -15,15 +17,13 @@ export default function User() {
     });
   }, []);
 
-  const search = (e) => {
-    e.preventDefault();
-
-    if (!e.target.username.value.trim()) {
-      return alert("Please enter a value in the search field");
+  const onChange = (e) => {
+    if (!e.target.value.trim()) {
+      return setMatches([]);
     }
 
-    searchUser(e.target.username.value).then((r) => {
-      alert(JSON.stringify(r.data));
+    searchUser(e.target.value).then((r) => {
+      setMatches(r.data.success);
     });
   };
 
@@ -43,15 +43,26 @@ export default function User() {
         </form>
         <br />
         <br />
-        <h5>Search for a user to give access to:</h5>
-        <br />
-        <form onSubmit={search}>
+        <h5>Enter Filename and Search User to add:</h5>
+        <form>
           <div className="form-control">
-            <label htmlFor="username">Enter Username</label>
-            <input type="username" id="username" autoComplete="ie-username" />
-            <button type="submit">Search</button>
+            <label htmlFor="username">Username: </label>
+            <input
+              onChange={onChange}
+              type="username"
+              id="username"
+              autoComplete="ie-username"
+            />
+            <label htmlFor="username">Filename: </label>
+            <input type="text" />
           </div>
         </form>
+        {matches.map((el, i) => (
+          <div key={i}>
+            {el.username}
+            <button>Add</button>
+          </div>
+        ))}
         <br />
         <br />
         <h5>Your encrypted documents will be displayed here: </h5>

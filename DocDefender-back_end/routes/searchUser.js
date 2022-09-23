@@ -5,13 +5,10 @@ export default async (req, res) => {
     return res.status(400).json({ error: "Missing username" });
   }
 
-  const user = await prisma.User.findUnique({
-    where: { username: req.query.username },
+  const users = await prisma.user.findMany({
+    where: { username: { startsWith: req.query.username } },
+    select: { username: true },
   });
 
-  if (!user) {
-    return res.json({ error: "Username is incorrect" });
-  }
-
-  res.json({ success: "Found User!" });
+  res.json({ success: users });
 };
