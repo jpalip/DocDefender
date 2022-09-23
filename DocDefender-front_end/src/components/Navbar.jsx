@@ -13,7 +13,7 @@ export default function Navbar() {
         setUsername(r.data.username);
       }
     });
-  }, [getUsername]);
+  }, []);
 
   return (
     <nav className="nav">

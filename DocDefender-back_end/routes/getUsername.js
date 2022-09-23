@@ -7,5 +7,5 @@ export default async (req, res) => {
     where: { id },
   });
 
-  return res.json({ username: user.username });
+  res.json({ username: user.username });
 };

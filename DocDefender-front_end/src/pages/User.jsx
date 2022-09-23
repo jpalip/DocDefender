@@ -13,7 +13,7 @@ export default function User() {
         setImages(r.data);
       }
     });
-  }, [getImages]);
+  }, []);
 
   return (
     <div>

@@ -5,5 +5,5 @@ export default async (req, res) => {
     where: { username: req.body.username.toLowerCase() },
   });
 
-  return res.json(user.id);
+  return res.json(user.username);
 };
