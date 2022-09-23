@@ -34,7 +34,10 @@ export default function User() {
         <h5>Search for a user to give access to:</h5>
         <br />
         <div>
+          <form>
           <input type="text" placeholder="Search for user..." />
+          <input type="submit"/>
+          </form>
         </div>
         <br />
         <br />
