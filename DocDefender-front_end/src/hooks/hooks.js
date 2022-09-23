@@ -34,6 +34,14 @@ export default () => {
       });
   }
 
+  function searchUser(username) {
+    return axios
+      .get(`${API_URL}/searchUser?username=${username}`)
+      .then((response) => {
+        return response;
+      });
+  }
+
   function loginUser(username, password) {
     return loginRegister(username, password, "login");
   }
@@ -101,5 +109,6 @@ export default () => {
     logoutUser,
     getImages,
     getUsername,
+    searchUser,
   };
 };

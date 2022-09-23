@@ -4,7 +4,7 @@ import useAuth from "../hooks/hooks";
 export default function User() {
   const [images, setImages] = useState([]);
 
-  const { useRedirectIfNotAuthed, getImages } = useAuth();
+  const { useRedirectIfNotAuthed, getImages, searchUser } = useAuth();
   useRedirectIfNotAuthed("/sign-in");
 
   useEffect(() => {
@@ -14,6 +14,18 @@ export default function User() {
       }
     });
   }, []);
+
+  const search = (e) => {
+    e.preventDefault();
+
+    if (!e.target.username.value.trim()) {
+      return alert("Please enter a value in the search field");
+    }
+
+    searchUser(e.target.username.value).then((r) => {
+      alert(JSON.stringify(r.data));
+    });
+  };
 
   return (
     <div>
@@ -33,12 +45,13 @@ export default function User() {
         <br />
         <h5>Search for a user to give access to:</h5>
         <br />
-        <div>
-          <form>
-          <input type="text" placeholder="Search for user..." />
-          <input type="submit"/>
-          </form>
-        </div>
+        <form onSubmit={search}>
+          <div className="form-control">
+            <label htmlFor="username">Enter Username</label>
+            <input type="username" id="username" autoComplete="ie-username" />
+            <button type="submit">Search</button>
+          </div>
+        </form>
         <br />
         <br />
         <h5>Your encrypted documents will be displayed here: </h5>
