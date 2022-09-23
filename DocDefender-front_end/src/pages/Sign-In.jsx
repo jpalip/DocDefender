@@ -15,6 +15,9 @@ export default function SignIn() {
         alert(r.data.error);
       } else if (r.data.success) {
         navigate("/user");
+        // display username
+        // display add button
+        // add the id to the file db
       }
     });
   };
