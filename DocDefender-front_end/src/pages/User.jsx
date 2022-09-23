@@ -4,9 +4,11 @@ import Button from "react-bootstrap/Button";
 
 export default function User() {
   const [images, setImages] = useState([]);
-  const [matches, setMatches] = useState([]);
+  const [userMatches, setUserMatches] = useState([]);
+  const [fileMatches, setFileMatches] = useState([]);
 
-  const { useRedirectIfNotAuthed, getImages, searchUser } = useAuth();
+  const { useRedirectIfNotAuthed, getImages, searchUser, searchFile } =
+    useAuth();
   useRedirectIfNotAuthed("/sign-in");
 
   useEffect(() => {
@@ -17,13 +19,23 @@ export default function User() {
     });
   }, []);
 
-  const onChange = (e) => {
+  const onChangeUsers = (e) => {
     if (!e.target.value.trim()) {
-      return setMatches([]);
+      return setUserMatches([]);
     }
 
     searchUser(e.target.value).then((r) => {
-      setMatches(r.data.success);
+      setUserMatches(r.data.success);
+    });
+  };
+
+  const onChangeFiles = (e) => {
+    if (!e.target.value.trim()) {
+      return setFileMatches([]);
+    }
+
+    searchFile(e.target.value).then((r) => {
+      setFileMatches(r.data.success);
     });
   };
 
@@ -46,23 +58,35 @@ export default function User() {
         <h5>Enter Filename and Search User to add:</h5>
         <form>
           <div className="form-control">
+            <label htmlFor="username">Filename: </label>
+            <input onChange={onChangeFiles} type="text" />
             <label htmlFor="username">Username: </label>
             <input
-              onChange={onChange}
+              onChange={onChangeUsers}
               type="username"
               id="username"
               autoComplete="ie-username"
             />
-            <label htmlFor="username">Filename: </label>
-            <input type="text" />
           </div>
         </form>
-        {matches.map((el, i) => (
-          <div key={i}>
-            {el.username}
-            <button>Add</button>
+        <div className="parentLists">
+          <div className="childList">
+            {fileMatches.map((el, i) => (
+              <div key={i}>
+                {el.title}
+                <button>Select</button>
+              </div>
+            ))}
           </div>
-        ))}
+          <div className="childList">
+            {userMatches.map((el, i) => (
+              <div key={i}>
+                {el.username}
+                <button>Add</button>
+              </div>
+            ))}
+          </div>
+        </div>
         <br />
         <br />
         <h5>Your encrypted documents will be displayed here: </h5>

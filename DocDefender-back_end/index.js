@@ -7,6 +7,7 @@ import verifyAuth from "./middleware/verifyAuth.js";
 import images from "./routes/images.js";
 import searchUser from "./routes/searchUser.js";
 import getUsername from "./routes/getUsername.js";
+import searchFile from "./routes/searchFile.js";
 
 export const prisma = new PrismaClient();
 
@@ -26,6 +27,7 @@ const main = async () => {
   app.get("/images", verifyAuth, images);
   app.get("/searchUser", searchUser);
   app.get("/getUsername", verifyAuth, getUsername);
+  app.get("/searchFile", searchFile);
 
   app.listen(8393, () => console.log("Listening on port 8393"));
 };

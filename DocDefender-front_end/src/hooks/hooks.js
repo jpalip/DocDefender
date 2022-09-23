@@ -42,6 +42,14 @@ export default () => {
       });
   }
 
+  function searchFile(title) {
+    return axios
+      .get(`${API_URL}/searchFile?filename=${title}`)
+      .then((response) => {
+        return response;
+      });
+  }
+
   function loginUser(username, password) {
     return loginRegister(username, password, "login");
   }
@@ -110,5 +118,6 @@ export default () => {
     getImages,
     getUsername,
     searchUser,
+    searchFile,
   };
 };
