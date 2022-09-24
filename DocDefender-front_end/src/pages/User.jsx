@@ -55,7 +55,7 @@ export default function User() {
         </form>
         <br />
         <br />
-        <h5>Enter Filename and Search User to add:</h5>
+        <h5>Search Files and Users to Share Access:</h5>
         <form>
           <div className="form-control">
             <label htmlFor="username">Filename: </label>
@@ -67,6 +67,7 @@ export default function User() {
               id="username"
               autoComplete="ie-username"
             />
+            <button>Add User</button>
           </div>
         </form>
         <div className="parentLists">
