@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import useAuth from "../hooks/hooks";
 import Button from "react-bootstrap/Button";
+import { ThemeConsumer } from "styled-components";
 
 export default function User() {
   const [images, setImages] = useState([]);
   const [userMatches, setUserMatches] = useState([]);
   const [fileMatches, setFileMatches] = useState([]);
+  const [file, setFile] = useState();
 
   const { useRedirectIfNotAuthed, getImages, searchUser, searchFile } =
     useAuth();
@@ -29,10 +31,45 @@ export default function User() {
     });
   };
 
+
+  const fileCheck = (e) => {
+      if (document.getElementById("my_file").value){
+        window.alert('File successfully encrypted')
+      }
+      else {
+        window.alert('Please select a file')
+      }
+      e.preventDefault();
+  };
+
+  
+  const fileUpload = (e) => {
+    switch(e.target.files[0].type) {
+      case "image/jpeg":
+      case "image/png":
+        handleImage(e);
+        break;
+      case "application/pdf":
+        break;
+
+      default:
+        window.alert('Incorrect File Type')
+        document.getElementById("my_file").value = null;
+        document.getElementById("image").src = null;
+    }
+};
+
+  const handleImage = (e) => {
+    console.log(e.target.files[0]);
+    setFile(URL.createObjectURL(e.target.files[0]));
+  }
+
   const onChangeFiles = (e) => {
     if (!e.target.value.trim()) {
       return setFileMatches([]);
     }
+
+
 
     searchFile(e.target.value).then((r) => {
       setFileMatches(r.data.success);
@@ -47,15 +84,16 @@ export default function User() {
       <div className="images">
         <br />
         <h5>Upload a file here to encrypt: </h5>
+        <p>(PDF, JPEG/JPG, or PNG)</p>
         <br />
         <br />
         <form>
-          <input type="file" id="myFile" name="filename" />
-          <input type="submit" />
+            <input type="file"  name="file_upload" id="my_file" onChange={fileUpload}/>
+            <button onClick={fileCheck}>Encrypt</button>
         </form>
         <br />
         <br />
-        <h5>Enter Filename and Search User to add:</h5>
+        <h5>Search Files and Users to Share Access:</h5>
         <form>
           <div className="form-control">
             <label htmlFor="username">Filename: </label>
@@ -67,6 +105,7 @@ export default function User() {
               id="username"
               autoComplete="ie-username"
             />
+            <button>Add User</button>
           </div>
         </form>
         <div className="parentLists">
@@ -96,7 +135,9 @@ export default function User() {
         <button>Confirm</button>
         <br />
         <br />
-        <h5>Your encrypted documents will be displayed here: </h5>
+        <h5>Your documents will be displayed here:</h5>
+              <br></br>
+              <img id="image" src={file}/>
         <br />
         <br />
         {images.map((image, i) => (
