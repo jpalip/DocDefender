@@ -1,3 +1,10 @@
 export default function About() {
-  return <h1>About</h1>;
+  return (
+    <div>
+  <h1>About</h1>
+  <p>DocDefender is a free encrypyion service that uses RSA and AES methods
+    to provide a high degree of efficacy and reliability.
+  </p>
+  </div>
+  );
 }
