@@ -88,6 +88,13 @@ export default function User() {
           </div>
         </div>
         <br />
+        <p className="form-control">
+          Selected File: {}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Selected User(s): {}
+        </p>
+        <button>Confirm</button>
+        <br />
         <br />
         <h5>Your encrypted documents will be displayed here: </h5>
         <br />
