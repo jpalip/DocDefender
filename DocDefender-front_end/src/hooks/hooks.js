@@ -34,6 +34,38 @@ export default () => {
       });
   }
 
+  function uploadFile(selectedFile) {
+    let formData = new FormData();
+    formData.append("file", selectedFile);
+    return axios
+      .post(`${API_URL}/upload`, formData, {
+        headers: {
+          ...authHeader(),
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .catch(function (error) {
+        if (error.response) {
+          // get response with a status code not in range 2xx
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // no response
+          console.log(error.request);
+          // instance of XMLHttpRequest in the browser
+          // instance ofhttp.ClientRequest in node.js
+        } else {
+          // Something wrong in setting up the request
+          console.log("Error", error.message);
+        }
+        console.log(error.config);
+      })
+      .then((response) => {
+        return response;
+      });
+  }
+
   function searchUser(username) {
     return axios
       .get(`${API_URL}/searchUser?username=${username}`)
@@ -119,5 +151,6 @@ export default () => {
     getUsername,
     searchUser,
     searchFile,
+    uploadFile,
   };
 };
