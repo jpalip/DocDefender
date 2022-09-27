@@ -6,7 +6,7 @@ export default async (req, res) => {
   }
 
   const users = await prisma.user.findMany({
-    where: { username: { startsWith: req.query.username } },
+    where: { username: { contains: req.query.username } },
     select: { username: true },
   });
 

@@ -80,7 +80,12 @@ export default function User() {
         <form>
           <div className="form-control">
             <label htmlFor="username">Filename: </label>
-            <input onChange={onChangeFiles} type="text" />
+            <input
+              onChange={onChangeFiles}
+              type="title"
+              id="title"
+              autoComplete="ie-title"
+            />
             <label htmlFor="username">Username: </label>
             <input
               onChange={onChangeUsers}

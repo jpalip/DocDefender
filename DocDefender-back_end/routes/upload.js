@@ -19,7 +19,7 @@ export default async (req, res) => {
     await prisma.file.create({
       data: {
         authorId: req.id,
-        url: uploadPath,
+        url: `http://localhost:8393/${file.name}`,
         author: {
           connect: {
             id: req.id,
