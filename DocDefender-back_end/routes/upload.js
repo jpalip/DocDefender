@@ -16,18 +16,19 @@ export default async (req, res) => {
   file.mv(uploadPath, async (err) => {
     if (err) return res.status(400).json({ error: err });
 
-    await prisma.user.update({
-      create: {
-        file: {
-          id: {
-            increment: 1,
+    await prisma.file.create({
+      data: {
+        authorId: req.id,
+        url: uploadPath,
+        author: {
+          connect: {
+            id: req.id,
           },
-          title: file.name,
-          url: uploadPath,
-          authorId: req.id,
         },
+        title: file.name,
       },
     });
+
     res.json({ success: "File uploaded" });
   });
 };
