@@ -5,7 +5,6 @@ export default function User() {
   const [images, setImages] = useState([]);
   const [userMatches, setUserMatches] = useState([]);
   const [fileMatches, setFileMatches] = useState([]);
-  //const [file, setFile] = useState();
 
   const {
     useRedirectIfNotAuthed,
@@ -22,6 +21,7 @@ export default function User() {
         setImages(r.data);
       }
     });
+    // eslint-disable-next-line
   }, []);
 
   const fileUpload = (e) => {
