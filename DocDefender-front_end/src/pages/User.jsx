@@ -59,6 +59,30 @@ export default function User() {
     });
   };
 
+  // Function to lock text box after file selection
+  const disableFileSelection = (e) => {
+    document.getElementById("title").value = e.target.previousSibling.data;
+    document.getElementById("title").disabled = "true";
+    document.getElementById("selectedFile").innerHTML =
+      "Selected File: " + e.target.previousSibling.data;
+    setFileMatches([]);
+    document.getElementById("fileSelection").style.visibility = "hidden";
+  };
+
+  const disableUserSelection = (e) => {
+    document.getElementById("username").value = e.target.previousSibling.data;
+    document.getElementById("username").disabled = "true";
+    document.getElementById("selectedUser").innerHTML =
+      "Selected User: " + e.target.previousSibling.data;
+    setUserMatches([]);
+    document.getElementById("userSelection").style.visibility = "hidden";
+  };
+
+  const resetSelection = (e) => {
+    document.getElementById("username").disabled = "false";
+    document.getElementById("title").disabled = "false";
+  };
+
   return (
     <div>
       <h1>
@@ -93,39 +117,40 @@ export default function User() {
               id="username"
               autoComplete="ie-username"
             />
-            <button>Add User</button>
+            <button onClick={resetSelection}>Reset Selections</button>
+            {/*<button onClick={disableUserSelection}>Add User</button>*/}
           </div>
         </form>
         <div className="parentLists">
-          <div className="childList">
+          <div className="childList" id="fileSelection">
             {fileMatches.map((el, i) => (
               <div key={i}>
                 {el.title}
-                <button>Select</button>
+                <button onClick={disableFileSelection}>Select</button>
               </div>
             ))}
           </div>
-          <div className="childList">
+          <div className="childList" id="userSelection">
             {userMatches.map((el, i) => (
               <div key={i}>
                 {el.username}
-                <button>Add</button>
+                <button onClick={disableUserSelection}>Add</button>
               </div>
             ))}
           </div>
         </div>
         <br />
-        <p className="form-control">
-          Selected File: {}
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Selected User(s): {}
-        </p>
+        <div style={{ display: "inline-block" }}>
+          <p id="selectedFile">Selected File: </p>
+          {/*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/}
+          <p id="selectedUser">Selected User: </p>
+        </div>
+        <br />
         <button>Confirm</button>
         <br />
         <br />
         <h5>Your documents will be displayed here:</h5>
         <br></br>
-        {/*<img id="image" src={file} />*/}
         <br />
         <br />
         {images.map((image, i) => (
