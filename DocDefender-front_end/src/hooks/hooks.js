@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 const API_URL = "http://localhost:8393";
 
-export default () => {
+const useAuth = () => {
   const navigate = useNavigate();
 
   function authHeader() {
@@ -20,6 +20,19 @@ export default () => {
   function logoutUser() {
     localStorage.removeItem("token");
     navigate("/sign-in");
+  }
+
+  function addUserToFile(username, filename) {
+    return axios
+      .post(`${API_URL}/addUserToFile`, {
+        headers: authHeader(),
+        username,
+        filename,
+      })
+      .catch(handleErrorResponse)
+      .then((response) => {
+        return response;
+      });
   }
 
   function loginRegister(username, password, type) {
@@ -152,5 +165,8 @@ export default () => {
     searchUser,
     searchFile,
     uploadFile,
+    addUserToFile,
   };
 };
+
+export default useAuth;
