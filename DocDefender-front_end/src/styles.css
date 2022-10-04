@@ -100,5 +100,57 @@ img:hover {
   padding: 1rem 1rem;
   vertical-align: middle;
 }
+/* Footer */
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
 
+#content-wrap {
+  /* Footer height */
+  padding-bottom: 2.5rem;
+}
 
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Footer height */
+  height: 2.5rem;
+}
+
+/* Fade-in effect with cross-browser compatibility */
+.fade-in-text {
+  font-family: Arial;
+  font-size: 60px;
+  animation: fadeIn 3s;
+  -webkit-animation: fadeIn 3s;
+  -moz-animation: fadeIn 3s;
+  -o-animation: fadeIn 3s;
+  -ms-animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-moz-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-o-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-ms-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
