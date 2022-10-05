@@ -61,21 +61,7 @@ const useAuth = () => {
         },
       })
       .catch(function (error) {
-        if (error.response) {
-          // get response with a status code not in range 2xx
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else if (error.request) {
-          // no response
-          console.log(error.request);
-          // instance of XMLHttpRequest in the browser
-          // instance ofhttp.ClientRequest in node.js
-        } else {
-          // Something wrong in setting up the request
-          console.log("Error", error.message);
-        }
-        console.log(error.config);
+        console.log(error);
       })
       .then((response) => {
         return response;
