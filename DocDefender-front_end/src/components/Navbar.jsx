@@ -1,9 +1,10 @@
 import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import useAuth from "../hooks/hooks";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import logo from "./icon.png";
 
 /*  Navbar function renamed to Taskbar in order to resolve naming
     conflict with Navbar class in Bootstrap */
@@ -28,24 +29,29 @@ export default function Taskbar() {
         <Navbar.Brand className="fs-3" href="/">
           <img
             alt=""
-            src="" /* Currently working on fixing image source issue */
-            width="30"
-            height="30"
+            src={logo}
+            width="50"
+            height="45"
             className="d-inline-block align-top"
-          />{' '}
+          />{" "}
           DocDefender
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-          <Nav className="fs-4">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/about">About</Nav.Link>
-            <Nav.Link href="/user">My Files</Nav.Link>
-            {authed() ||<Nav.Link href="/sign-in">Sign In</Nav.Link>}
-            {authed() && (
-          <Button variant="primary" size="sm" onClick={logoutUser} className="fs-6">
-            Logout: {username}
-          </Button>
-        )}
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Nav className="fs-4">
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/about">About</Nav.Link>
+          <Nav.Link href="/user">My Files</Nav.Link>
+          {authed() || <Nav.Link href="/sign-in">Sign In</Nav.Link>}
+          {authed() && (
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={logoutUser}
+              className="fs-6"
+            >
+              Logout: {username}
+            </Button>
+          )}
         </Nav>
       </Container>
     </Navbar>
