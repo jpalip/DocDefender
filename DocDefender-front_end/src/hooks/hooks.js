@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 
-const API_URL = "http://localhost:8393";
+const API_URL = process.env.API_URL || "http://localhost:8393";
 
 const useAuth = () => {
   const navigate = useNavigate();
