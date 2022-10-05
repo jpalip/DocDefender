@@ -2,9 +2,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 
-const API_URL = process.env.NETLIFY
-  ? "https://docdefender-backend.herokuapp.com"
-  : "http://localhost:8393";
+const API_URL = "https://docdefender-backend.herokuapp.com";
 
 const useAuth = () => {
   const navigate = useNavigate();
