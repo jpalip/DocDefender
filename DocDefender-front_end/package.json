@@ -17,7 +17,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set API_URL=http://localhost:8393 && react-scripts start",
     "build": "react-scripts build",
     "deploy": "npm run build && netlify deploy --prod",
     "test": "react-scripts test",

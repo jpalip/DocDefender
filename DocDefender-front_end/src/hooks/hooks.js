@@ -3,7 +3,9 @@ import axios from "axios";
 import { useEffect } from "react";
 
 const API_URL =
-  process.env.API_URL || "https://docdefender-backend.herokuapp.com";
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8393"
+    : "https://docdefender-backend.herokuapp.com";
 
 const useAuth = () => {
   const navigate = useNavigate();

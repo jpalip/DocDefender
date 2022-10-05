@@ -8,7 +8,7 @@ export default function Home() {
       <body>
         <div id="page-container">
           <div id="content-wrap">
-            <div class="fade-in-text">
+            <div className="fade-in-text">
               <h3>Welcome to DocDefender.org</h3>
             </div>
           </div>
