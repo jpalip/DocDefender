@@ -19,7 +19,9 @@ export default async (req, res) => {
     await prisma.file.create({
       data: {
         authorId: req.id,
-        url: `http://localhost:8393/${file.name}`,
+        url: process.env.DYNO
+          ? `https://docdefender-backend.herokuapp.com/${file.name}`
+          : `http://localhost:8393/${file.name}`,
         author: {
           connect: {
             id: req.id,
