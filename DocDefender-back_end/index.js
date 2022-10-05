@@ -25,6 +25,8 @@ const main = async () => {
     cors({
       credentials: true,
       origin: "*",
+      methods: "GET,POST",
+      optionsSuccessStatus: 200,
     })
   );
 
