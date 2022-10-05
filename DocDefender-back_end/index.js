@@ -41,7 +41,8 @@ const main = async () => {
   app.get("/getUsername", verifyAuth, getUsername);
   app.get("/searchFile", searchFile);
 
-  app.listen(8393, () => console.log("Listening on port 8393"));
+  const port = process.env.PORT || 8393;
+  app.listen(port, () => console.log("Listening on port", port));
 };
 
 main()
