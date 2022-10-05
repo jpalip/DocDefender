@@ -37,7 +37,7 @@ export default function About() {
               <div class="card-header fs-5">Can I encrypt any file?</div>
                 <div class="card-body">
                 <p class="card-text">Currently, DocDefender supports the encryption of documents and images.
-                Supported image formats include .pdf, .jpeg, .jpg and .png.</p>
+                Supported image formats include .pdf, .jpeg, .jpg, .png and .mov.</p>
                 </div>
               </div>
             </div>
