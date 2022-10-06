@@ -32,11 +32,11 @@ export default async (req, res) => {
     if (err) {
       return res.status(500).json({ error: err });
     }
-    return res.send({
-      response_code: 200,
-      response_message: "Successly uploaded file",
-      response_data: data,
-    });
+    // return res.send({
+    //   response_code: 200,
+    //   response_message: "Successly uploaded file",
+    //   response_data: data,
+    // });
   });
 
   await prisma.file.create({
