@@ -3,6 +3,10 @@ import { prisma } from "../index.js";
 import jwt from "jsonwebtoken";
 
 export default async (req, res) => {
+  if (!req.body.username || !req.body.password) {
+    return res.status(400).json({ error: "Missing username or password" });
+  }
+
   const user = await prisma.user.findUnique({
     where: { username: req.body.username.toLowerCase() },
   });

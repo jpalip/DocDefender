@@ -131,46 +131,73 @@ img:hover {
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-moz-keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-o-keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-ms-keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Fade-in from bottom transition (may need to add
 cross browser support) */
-.cssanimation, .cssanimation span {
+.cssanimation,
+.cssanimation span {
   animation-duration: 1s;
   animation-fill-mode: both;
 }
 
-.cssanimation span { display: inline-block }
+.cssanimation span {
+  display: inline-block;
+}
 
-.fadeInBottom { animation-name: fadeInBottom }
+.fadeInBottom {
+  animation-name: fadeInBottom;
+}
 @keyframes fadeInBottom {
   from {
-      opacity: 0;
-      transform: translateY(100%);
+    opacity: 0;
+    transform: translateY(100%);
   }
-  to { opacity: 1 }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Card zoom effect on hover (may need to add
@@ -183,4 +210,8 @@ cross browser support) */
 }
 .card:hover {
   transform: scale(1.1);
+}
+
+.delete-file {
+  margin-top: 20px;
 }

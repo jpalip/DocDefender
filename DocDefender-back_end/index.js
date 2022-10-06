@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 import register from "./routes/register.js";
 import login from "./routes/login.js";
 import verifyAuth from "./middleware/verifyAuth.js";
-import images from "./routes/images.js";
+import files from "./routes/files.js";
 import searchUser from "./routes/searchUser.js";
 import getUsername from "./routes/getUsername.js";
 import searchFile from "./routes/searchFile.js";
@@ -39,7 +39,7 @@ const main = async () => {
   app.post("/login", login);
   app.post("/register", register);
   app.post("/upload", verifyAuth, upload);
-  app.get("/images", verifyAuth, images);
+  app.get("/files", verifyAuth, files);
   app.get("/searchUser", searchUser);
   app.get("/getUsername", verifyAuth, getUsername);
   app.get("/searchFile", searchFile);

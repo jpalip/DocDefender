@@ -114,9 +114,9 @@ const useAuth = () => {
       });
   }
 
-  function getImages() {
+  function getFiles() {
     return axios
-      .get(`${API_URL}/images`, {
+      .get(`${API_URL}/files`, {
         headers: authHeader(),
       })
       .catch(handleErrorResponse)
@@ -152,7 +152,7 @@ const useAuth = () => {
     loginUser,
     registerUser,
     logoutUser,
-    getImages,
+    getFiles,
     getUsername,
     searchUser,
     searchFile,

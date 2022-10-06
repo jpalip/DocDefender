@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../hooks/hooks";
 
 export default function User() {
-  const [images, setImages] = useState([]);
+  const [files, setFiles] = useState([]);
   const [userMatches, setUserMatches] = useState([]);
   const [fileMatches, setFileMatches] = useState([]);
   const [usernameDisabled, setUsernameDisabled] = useState(false);
@@ -16,7 +16,7 @@ export default function User() {
 
   const {
     useRedirectIfNotAuthed,
-    getImages,
+    getFiles,
     searchUser,
     searchFile,
     uploadFile,
@@ -25,9 +25,9 @@ export default function User() {
   useRedirectIfNotAuthed("/sign-in");
 
   useEffect(() => {
-    getImages().then((r) => {
+    getFiles().then((r) => {
       if (r.data) {
-        setImages(r.data);
+        setFiles(r.data);
       }
     });
     // eslint-disable-next-line
@@ -54,6 +54,8 @@ export default function User() {
     // }
     // addUser;
   };
+
+  const deleteFile = (id) => {};
 
   const onChangeUsers = (e) => {
     setUsernameField(e.target.value);
@@ -117,7 +119,7 @@ export default function User() {
       <h1>
         <u>File Vault</u>
       </h1>
-      <div className="images">
+      <div className="files">
         <br />
         <h5>Upload a file here to encrypt: </h5>
         <p>(PDF, JPEG/JPG, or PNG)</p>
@@ -199,7 +201,7 @@ export default function User() {
         <br></br>
         <br />
         <br />
-        {images.map((image, i) => (
+        {files.map((image, i) => (
           <div className="container" key={i}>
             <h2>{image.title || "Untitled"}</h2>
             <br />
@@ -209,6 +211,9 @@ export default function User() {
             <div className="overlay">
               <div className="text">test text</div>
             </div>
+            <button onClick={deleteFile} className="delete-file">
+              Delete
+            </button>
           </div>
         ))}
       </div>
