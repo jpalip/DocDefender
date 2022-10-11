@@ -37,10 +37,10 @@ export default async function (req, res) {
     getFile(files[0].title)
       .then((fileData) => {
         encodedFiles.push(encode(fileData.Body));
-        res.json({ success: encodedFiles });
+        return res.json({ success: encodedFiles });
       })
       .catch((e) => {
-        res.send(e);
+        return res.send(e);
       });
   }
 
