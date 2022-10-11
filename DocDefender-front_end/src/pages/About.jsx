@@ -17,8 +17,8 @@ export default function About() {
               <div className="card-body">
                 <p className="card-text">
                   DocDefender is a fast and reliable encryption service that
-                  uses RSA and AES methods to provide a high degree of efficacy
-                  and reliability.
+                  uses RSA and AES methods to provide a high degree of
+                  efficiency and reliability.
                 </p>
               </div>
             </div>

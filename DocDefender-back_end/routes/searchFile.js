@@ -6,7 +6,7 @@ export default async (req, res) => {
   }
 
   const files = await prisma.file.findMany({
-    where: { title: { contains: req.query.title } },
+    where: { title: { contains: req.query.title }, authorId: req.id },
     select: { title: true },
   });
 
