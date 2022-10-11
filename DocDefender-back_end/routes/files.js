@@ -1,3 +1,4 @@
+import { response } from "express";
 import { s3, prisma } from "../index.js";
 
 async function getFile(Key) {
@@ -32,12 +33,16 @@ export default async function (req, res) {
 
   let encodedFiles = [];
 
-  getFile(files[0].title)
-    .then((fileData) => {
-      encodedFiles.push(encode(fileData.Body));
-      res.json({ success: encodedFiles });
-    })
-    .catch((e) => {
-      res.send(e);
-    });
+  if (files.length != 0) {
+    getFile(files[0].title)
+      .then((fileData) => {
+        encodedFiles.push(encode(fileData.Body));
+        res.json({ success: encodedFiles });
+      })
+      .catch((e) => {
+        res.send(e);
+      });
+  }
+
+  res.json({ error: "No files found" });
 }
