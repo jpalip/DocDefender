@@ -38,6 +38,23 @@ const useAuth = () => {
       });
   }
 
+  function deleteFile(fileId) {
+    return axios
+      .post(
+        `${API_URL}/deleteFile`,
+        {
+          fileId,
+        },
+        {
+          headers: authHeader(),
+        }
+      )
+      .catch(handleErrorResponse)
+      .then((response) => {
+        return response;
+      });
+  }
+
   function loginRegister(username, password, type) {
     return axios
       .post(`${API_URL}/${type}`, { username, password })
@@ -93,10 +110,7 @@ const useAuth = () => {
   }
 
   function handleErrorResponse(error) {
-    if (
-      error.response &&
-      (error.response.status === 401 || error.response.status === 403)
-    ) {
+    if (error.response && error.response.status === 401) {
       logoutUser();
     }
 
@@ -158,6 +172,7 @@ const useAuth = () => {
     searchFile,
     uploadFile,
     addUserToFile,
+    deleteFile,
   };
 };
 

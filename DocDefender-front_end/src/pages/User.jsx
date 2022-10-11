@@ -20,14 +20,15 @@ export default function User() {
     searchUser,
     searchFile,
     uploadFile,
+    deleteFile,
     addUserToFile,
   } = useAuth();
   useRedirectIfNotAuthed("/sign-in");
 
   useEffect(() => {
     getFiles().then((r) => {
-      if (r.data) {
-        setFiles(r.data);
+      if (r.data.success) {
+        setFiles(r.data.success);
       }
     });
     // eslint-disable-next-line
@@ -55,7 +56,15 @@ export default function User() {
     // addUser;
   };
 
-  const deleteFile = (id) => {};
+  const onDeleteFile = (id) => {
+    deleteFile(id).then((r) => {
+      if (r.data.error) {
+        alert(r.data.error);
+      } else if (r.data.success) {
+        alert(r.data.success);
+      }
+    });
+  };
 
   const onChangeUsers = (e) => {
     setUsernameField(e.target.value);
@@ -211,7 +220,10 @@ export default function User() {
             <div className="overlay">
               <div className="text">test text</div>
             </div>
-            <button onClick={deleteFile} className="delete-file">
+            <button
+              onClick={() => onDeleteFile(image.id)}
+              className="delete-file"
+            >
               Delete
             </button>
           </div>

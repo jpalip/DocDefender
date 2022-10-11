@@ -9,12 +9,21 @@ import searchUser from "./routes/searchUser.js";
 import getUsername from "./routes/getUsername.js";
 import searchFile from "./routes/searchFile.js";
 import upload from "./routes/upload.js";
+import deleteFile from "./routes/deleteFile.js";
 import fileUpload from "express-fileupload";
 import path from "path";
 import { fileURLToPath } from "url";
+import aws from "aws-sdk";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.join(path.dirname(__filename));
+
+aws.config.update({
+  accessKeyId: process.env.AWS_ID,
+  secretAccessKey: process.env.AWS_SECRET,
+});
+
+export const s3 = new aws.S3();
 
 export const prisma = new PrismaClient();
 
@@ -39,6 +48,7 @@ const main = async () => {
   app.post("/login", login);
   app.post("/register", register);
   app.post("/upload", verifyAuth, upload);
+  app.post("/deleteFile", verifyAuth, deleteFile);
   app.get("/files", verifyAuth, files);
   app.get("/searchUser", searchUser);
   app.get("/getUsername", verifyAuth, getUsername);

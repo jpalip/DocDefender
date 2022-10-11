@@ -1,14 +1,6 @@
-import { prisma } from "../index.js";
+import { prisma, s3 } from "../index.js";
 import path from "path";
 import { fileURLToPath } from "url";
-import aws from "aws-sdk";
-
-aws.config.update({
-  accessKeyId: process.env.AWS_ID,
-  secretAccessKey: process.env.AWS_SECRET,
-});
-
-const s3 = new aws.S3();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.join(path.dirname(__filename), "..");
@@ -28,17 +20,6 @@ export default async (req, res) => {
     Body: fileContent,
   };
 
-  s3.upload(params, function (err, data) {
-    if (err) {
-      return res.status(500).json({ error: err });
-    }
-    // return res.send({
-    //   response_code: 200,
-    //   response_message: "Successly uploaded file",
-    //   response_data: data,
-    // });
-  });
-
   await prisma.file.create({
     data: {
       authorId: req.id,
@@ -54,5 +35,11 @@ export default async (req, res) => {
     },
   });
 
-  res.json({ success: "File uploaded" });
+  s3.upload(params, function (err, data) {
+    if (err) {
+      return res.status(500).json({ error: err });
+    }
+
+    res.json({ success: "File uploaded" });
+  });
 };
