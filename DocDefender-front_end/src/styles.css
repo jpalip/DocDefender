@@ -215,3 +215,11 @@ cross browser support) */
 .delete-file {
   margin-top: 20px;
 }
+
+.center-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
