@@ -95,7 +95,9 @@ const useAuth = () => {
 
   function searchFile(title) {
     return axios
-      .get(`${API_URL}/searchFile?filename=${title}`)
+      .get(`${API_URL}/searchFile?filename=${title}`, {
+        headers: authHeader(),
+      })
       .then((response) => {
         return response;
       });
