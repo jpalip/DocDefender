@@ -34,13 +34,13 @@ export default async function (req, res) {
   let encodedFiles = [];
 
   if (files.length != 0) {
-    getFile(files[0].title)
+    return getFile(files[0].title)
       .then((fileData) => {
         encodedFiles.push(encode(fileData.Body));
-        return res.json({ success: encodedFiles });
+        res.json({ success: encodedFiles });
       })
       .catch((e) => {
-        return res.send(e);
+        res.send(e);
       });
   }
 
