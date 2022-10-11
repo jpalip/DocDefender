@@ -52,7 +52,7 @@ const main = async () => {
   app.get("/files", verifyAuth, files);
   app.get("/searchUser", searchUser);
   app.get("/getUsername", verifyAuth, getUsername);
-  app.get("/searchFile", searchFile);
+  app.get("/searchFile", verifyAuth, searchFile);
 
   const port = process.env.PORT || 8393;
   app.listen(port, () => console.log("Listening on port", port));
