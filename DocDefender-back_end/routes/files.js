@@ -32,7 +32,7 @@ export default async function (req, res) {
 
   let encodedFiles = [];
 
-  getFile(file.title)
+  getFile(files[0].title)
     .then((fileData) => {
       encodedFiles.push(encode(fileData.Body));
       res.json({ success: encodedFiles });
