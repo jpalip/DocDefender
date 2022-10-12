@@ -5,7 +5,7 @@ import { useEffect } from "react";
 const API_URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:8393"
-    : "https://docdefender-backend.herokuapp.com";
+    : "https://docdefender-backend-8vfpr.ondigitalocean.app/";
 
 const useAuth = () => {
   const navigate = useNavigate();
