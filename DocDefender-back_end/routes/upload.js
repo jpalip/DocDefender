@@ -1,9 +1,18 @@
 import { prisma, s3 } from "../index.js";
-import path from "path";
-import { fileURLToPath } from "url";
+import multer from "multer";
+import multerS3 from "multer-s3";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.join(path.dirname(__filename), "..");
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: "docdefender-filestore",
+    acl: "",
+    key: function (request, file, cb) {
+      console.log(file);
+      cb(null, file.originalname);
+    },
+  }),
+}).array("upload", 1);
 
 export default async (req, res) => {
   if (!req.files) {
@@ -12,34 +21,23 @@ export default async (req, res) => {
 
   const file = req.files.file;
 
-  const fileContent = Buffer.from(file.data, "binary");
-
-  const params = {
-    Bucket: process.env.AWS_BUCKET_NAME,
-    Key: file.name,
-    Body: fileContent,
-  };
-
-  await prisma.file.create({
-    data: {
-      authorId: req.id,
-      url: process.env.DYNO
-        ? `https://docdefender-backend.herokuapp.com/${file.name}`
-        : `http://localhost:8393/${file.name}`,
-      author: {
-        connect: {
-          id: req.id,
-        },
-      },
-      title: file.name,
-    },
-  });
-
-  s3.upload(params, function (err, data) {
+  upload(req, res, async function (err) {
     if (err) {
-      return res.status(500).json({ error: err });
+      console.log(err);
+      return res.json({ error: err });
     }
-
-    res.json({ success: "File uploaded" });
+    await prisma.file.create({
+      data: {
+        authorId: req.id,
+        url: file.name,
+        author: {
+          connect: {
+            id: req.id,
+          },
+        },
+        title: file.name,
+      },
+    });
+    return res.json({ success: "File has been successfully uploaded" });
   });
 };

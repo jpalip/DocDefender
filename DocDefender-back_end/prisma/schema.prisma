@@ -17,7 +17,7 @@ model User {
 
 model File {
   id        Int      @id @default(autoincrement())
-  title     String?  @unique
+  title     String
   url       String
   author    User[]
   authorId  Int
