@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/hooks";
-import logo from "./icon.png";
 
 export default function SignIn() {
   const navigate = useNavigate();
