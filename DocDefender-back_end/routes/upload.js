@@ -1,9 +1,9 @@
-import { prisma, s3 } from "../index.js";
+import { prisma } from "../index.js";
 import multer from "multer";
 import multerS3 from "multer-s3";
 
 export default async (req, res) => {
-  const upload = multer({
+  const upload = multer(next, {
     storage: multerS3({
       s3,
       bucket: "docdefender-filestore",
@@ -13,7 +13,7 @@ export default async (req, res) => {
         cb(null, file.originalname);
       },
     }),
-  }).array("upload", 1);
+  }).single("file");
 
   upload(req, res, async function (err) {
     if (err) {
