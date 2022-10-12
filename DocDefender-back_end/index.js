@@ -11,12 +11,16 @@ import searchFile from "./routes/searchFile.js";
 import upload from "./routes/upload.js";
 import deleteFile from "./routes/deleteFile.js";
 import aws from "aws-sdk";
-import fileUpload from "express-fileupload";
+import dotenv from "dotenv";
 
-const spacesEndpoint = new aws.Endpoint("nyc3.digitaloceanspaces.com");
+dotenv.config();
+
+const spacesEndpoint = new aws.Endpoint(process.env.DO_SPACES_ENDPOINT);
 
 export const s3 = new aws.S3({
   endpoint: spacesEndpoint,
+  accessKeyId: process.env.DO_SPACES_KEY,
+  secretAccessKey: process.env.DO_SPACES_SECRET,
 });
 
 export const prisma = new PrismaClient();
@@ -32,8 +36,6 @@ const main = async () => {
   );
 
   app.use(express.json());
-
-  app.use(fileUpload());
 
   app.post("/login", login);
   app.post("/register", register);

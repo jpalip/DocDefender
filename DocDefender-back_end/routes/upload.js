@@ -15,29 +15,23 @@ export default async (req, res) => {
     }),
   }).array("upload", 1);
 
-  if (!req.files) {
-    return res.status(400).send("No files were uploaded.");
-  }
-
-  const file = req.files.file;
-
   upload(req, res, async function (err) {
     if (err) {
       console.log(err);
-      return res.json({ error: err });
+      return res.json({ error: err.message });
     }
-    await prisma.file.create({
-      data: {
-        authorId: req.id,
-        url: file.name,
-        author: {
-          connect: {
-            id: req.id,
-          },
-        },
-        title: file.name,
-      },
-    });
+    // await prisma.file.create({
+    //   data: {
+    //     authorId: req.id,
+    //     url: file.name,
+    //     author: {
+    //       connect: {
+    //         id: req.id,
+    //       },
+    //     },
+    //     title: file.name,
+    //   },
+    // });
     return res.json({ success: "File has been successfully uploaded" });
   });
 };
