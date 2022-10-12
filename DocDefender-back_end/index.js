@@ -11,6 +11,7 @@ import searchFile from "./routes/searchFile.js";
 import upload from "./routes/upload.js";
 import deleteFile from "./routes/deleteFile.js";
 import aws from "aws-sdk";
+import fileUpload from "express-fileupload";
 
 const spacesEndpoint = new aws.Endpoint("nyc3.digitaloceanspaces.com");
 
@@ -31,6 +32,8 @@ const main = async () => {
   );
 
   app.use(express.json());
+
+  app.use(fileUpload());
 
   app.post("/login", login);
   app.post("/register", register);
