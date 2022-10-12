@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/hooks";
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -83,7 +84,9 @@ export default function SignIn() {
                         <br />
                         <h5> Not a member?</h5>
                         <h5>
-                          <a href="/register">Register</a>
+                          <Link to="/register">
+                            <button className="btn btn-primary btn-sm px-4">Register</button>
+                          </Link>
                         </h5>
                       </div>
                     </form>

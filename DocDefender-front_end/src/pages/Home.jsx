@@ -1,6 +1,7 @@
 import upload from "./upload.png";
 import encrypt from "./encrypt.png";
 import view from "./view.png";
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 export default function Home() {
   return (
@@ -79,10 +80,11 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <a className="text-decoration-none" href="/register">
-          Register/Sign-In to an Account
-          <i className="bi bi-arrow-right"></i>
-        </a>
+        <h5>
+          <Link to="/register">
+            <button className="btn btn-primary px-4">Register/Sign-In to an Account</button>
+          </Link>
+        </h5>
       </section>
       <section className="bg-light py-5 border-bottom">
         <div className="container px-5 my-5">
