@@ -2,7 +2,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 
-const API_URL = process.env.API_URL || "http://localhost:8393";
+const API_URL =
+  process.NODE_ENV === "development"
+    ? "http://localhost:8393"
+    : "https://api.docdefender.org";
 
 const useAuth = () => {
   const navigate = useNavigate();
