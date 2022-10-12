@@ -121,7 +121,7 @@ export default function About() {
               <div className="card-header fs-5">
                 <a
                   className="btn btn-primary"
-                  href="mailto:docdefender@gmail.com"
+                  href="mailto:support@docdefender.org"
                 >
                   Contact Us!
                 </a>

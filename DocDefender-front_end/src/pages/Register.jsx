@@ -21,21 +21,65 @@ export default function Register() {
 
   return (
     !authed() && (
-      <div>
-        <h1>Register</h1>
-        <form onSubmit={register}>
-          <div className="form-control">
-            <label htmlFor="username">Username</label>
-            <input type="username" id="username" autoComplete="ie-username" />
+      <div
+        style={{
+          display: "block",
+          width: "100%",
+        }}
+        className="container-fluid"
+      >
+        <div className="row no-gutter">
+          <div className="center-screen">
+            <div className="register d-flex align-items-center py-5">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-20 col-x5-50 mx-auto">
+                    <h3 className="display-4">Register</h3>
+                    <p className="text-muted mb-4">
+                      Register a DocDefender account below.
+                    </p>
+                    <form onSubmit={register}>
+                      <div className="form-floating mb-3">
+                        <input
+                          type="username"
+                          id="username"
+                          autoComplete="ie-username"
+                          className="form-control"
+                        />
+                        <label className="form-label" htmlFor="username">
+                          Username
+                        </label>
+                      </div>
+                      <div className="form-floating mb-3">
+                        <input
+                          type="password"
+                          id="password"
+                          autoComplete="ie-password"
+                          className="form-control"
+                        />
+                        <label className="form-label" htmlFor="password">
+                          Password
+                        </label>
+                      </div>
+                      <button
+                        type="submit"
+                        className="btn btn-primary btn-block"
+                      >
+                        Register
+                      </button>
+                    </form>
+                    <div className="text-center">
+                      <br />
+                      <h5> Already a member?</h5>
+                      <h5>
+                        <a href="/sign-in">Sign In</a>
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="form-control">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" autoComplete="ie-password" />
-          </div>
-          <button type="submit">Register</button>
-        </form>
-        <div className="sign-up">
-          Already have an account? <a href="/sign-in">Sign In</a>
         </div>
       </div>
     )

@@ -223,3 +223,8 @@ cross browser support) */
   text-align: center;
   width: 100%;
 }
+
+.homepage-images {
+  height: 75px;
+  width: 75px;
+}

@@ -21,28 +21,25 @@ export default function SignIn() {
 
   return (
     !authed() && (
-      <div className="container-fluid">
+      <div
+        style={{
+          display: "block",
+          width: "100%",
+        }}
+        className="container-fluid"
+      >
         <div className="row no-gutter">
-          {/* image half */}
-          {/* <div class="col-md-6 d-none d-md-flex bg-image">
-            <img
-              src={logo}
-              class="img-fluid"
-              alt="responsive image is not avalible"
-            ></img>
-          </div> */}
-
           {/* login form half */}
           <div className="center-screen">
             <div className="login d-flex align-items-center py-5">
               <div className="container">
                 <div className="row">
-                  <div className="col-lg-10 col-xl-7 mx-auto">
+                  <div className="col-lg-20 col-x5-50 mx-auto">
                     <h3 className="display-4">
                       <b>Login</b>
                     </h3>
                     <p className="text-muted mb-4">
-                      Login to DocDefender now or register an account below.
+                      Login to your DocDefender account below.
                     </p>
                     <form onSubmit={login}>
                       {/* email input */}
@@ -52,7 +49,14 @@ export default function SignIn() {
                           id="username"
                           className="form-control"
                         />
-                        <label className="form-label" htmlFor="username">
+                        <label
+                          style={{
+                            textAlign: "center",
+                            justifyContent: "center",
+                          }}
+                          className="form-label"
+                          htmlFor="username"
+                        >
                           Username
                         </label>
                       </div>
@@ -77,9 +81,9 @@ export default function SignIn() {
                       {/* need account ? */}
                       <div className="text-center">
                         <br />
+                        <h5> Not a member?</h5>
                         <h5>
-                          {" "}
-                          Not a member? <a href="/register">Register</a>
+                          <a href="/register">Register</a>
                         </h5>
                       </div>
                     </form>
