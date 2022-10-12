@@ -22,15 +22,18 @@ export default function User() {
     uploadFile,
     deleteFile,
     addUserToFile,
+    authed,
   } = useAuth();
   useRedirectIfNotAuthed("/sign-in");
 
   useEffect(() => {
-    getFiles().then((r) => {
-      if (r.data.success) {
-        setFiles(r.data.success);
-      }
-    });
+    if (authed()) {
+      getFiles().then((r) => {
+        if (r.data.success) {
+          setFiles(r.data.success);
+        }
+      });
+    }
     // eslint-disable-next-line
   }, []);
 
