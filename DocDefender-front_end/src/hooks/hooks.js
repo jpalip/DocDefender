@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 
 const API_URL =
-  process.NODE_ENV === "development"
+  process.env.NODE_ENV === "development"
     ? "http://localhost:8393"
     : "https://api.docdefender.org";
 
