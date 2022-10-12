@@ -5,8 +5,15 @@ import view from "./view.png";
 export default function Home() {
   return (
     <div id="page-container">
-      <header className="bg-dark py-5">
-        <div style={{ width: "100vw" }} className="container px-5">
+      <header
+        // style={{
+        //   marginTop: "-1%",
+        //   marginLeft: "-100%",
+        //   marginRight: "-100%",
+        // }}
+        className="bg-dark py-5"
+      >
+        <div className="container px-5">
           <div className="row gx-5 justify-content-center">
             <div className="col-lg-6">
               <div className="text-center my-5">
@@ -48,9 +55,11 @@ export default function Home() {
               <img className="homepage-images" src={upload} alt="" />
               <h2 className="h4 fw-bolder">Secure Upload</h2>
               <p>
-                Paragraph of text beneath the heading to explain the heading.
-                We'll add onto it with another sentence and probably just keep
-                going until we run out of words.
+                All of our website transmissions are encrypted using our default
+                SSL certificate. The transmission of any and all files are
+                secured using an encryption algorithm to scramble data in
+                transit, which prevents hackers from reading it as it is sent
+                over the connection.
               </p>
             </div>
             <div className="col-lg-4 mb-5 mb-lg-0">
@@ -60,9 +69,10 @@ export default function Home() {
               <img className="homepage-images" src={encrypt} alt="" />
               <h2 className="h4 fw-bolder">Fast Encryption</h2>
               <p>
-                Paragraph of text beneath the heading to explain the heading.
-                We'll add onto it with another sentence and probably just keep
-                going until we run out of words.
+                All files uploaded are securely stored in a encrypted storage
+                container. Each file is only accessible by its owner and anyone
+                else who was granted viewing access. Files can deleted and added
+                as needed and/or as often as the user would like.
               </p>
             </div>
             <div className="col-lg-4">
@@ -70,11 +80,12 @@ export default function Home() {
                 <i className="bi bi-toggles2"></i>
               </div>
               <img className="homepage-images" src={view} alt="" />
-              <h2 className="h4 fw-bolder">Featured title</h2>
+              <h2 className="h4 fw-bolder">Reliable Accessability</h2>
               <p>
-                Paragraph of text beneath the heading to explain the heading.
-                We'll add onto it with another sentence and probably just keep
-                going until we run out of words.
+                All files stored within our site will be accessible to their
+                respective owners and authorized members. We guarantee a 99.99%
+                uptime and reliable hardware such that you will always be able
+                to access your files whenever need be.
               </p>
             </div>
           </div>
@@ -233,8 +244,12 @@ export default function Home() {
             <div className="feature bg-primary bg-gradient text-white rounded-3 mb-3">
               <i className="bi bi-envelope"></i>
             </div>
-            <a href="#contact-us" />
-            <h2 className="fw-bolder">Contact Us</h2>
+
+            <h2 className="fw-bolder">
+              <a style={{ textDecoration: "none" }} href="#contact-us">
+                Contact Us
+              </a>
+            </h2>
             <p className="lead mb-0">We'd love to hear from you</p>
           </div>
           <div className="row gx-5 justify-content-center">

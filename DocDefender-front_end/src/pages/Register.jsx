@@ -34,7 +34,9 @@ export default function Register() {
               <div className="container">
                 <div className="row">
                   <div className="col-lg-20 col-x5-50 mx-auto">
-                    <h3 className="display-4">Register</h3>
+                    <h3 className="display-4">
+                      <b>Register</b>
+                    </h3>
                     <p className="text-muted mb-4">
                       Register a DocDefender account below.
                     </p>

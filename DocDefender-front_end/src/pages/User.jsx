@@ -138,15 +138,26 @@ export default function User() {
         <br />
         <br />
         <form useref="uploadForm" id="uploadForm" onSubmit={fileUpload}>
-          <input type="file" />
-          <input type="submit" value="Encrypt" />
+          <input
+            id="input-b3"
+            name="input-b3[]"
+            type="file"
+            className="file"
+            multiple
+            data-show-upload="false"
+            data-show-caption="true"
+            data-msg-placeholder="Select {files} for upload..."
+          />
+          <button className="btn btn-success">Encrypt</button>
         </form>
         <br />
         <br />
         <h5>Search Files and Users to Share Access:</h5>
         <form>
-          <div className="form-control">
-            <label htmlFor="username">Filename: </label>
+          <div
+            style={{ marginLeft: "30%", marginRight: "30%" }}
+            className="form-floating mb-3"
+          >
             <input
               onChange={onChangeFiles}
               disabled={filenameDisabled}
@@ -154,8 +165,14 @@ export default function User() {
               type="title"
               id="title"
               autoComplete="ie-title"
+              className="form-control"
             />
-            <label htmlFor="username">Username: </label>
+            <label htmlFor="filename">Filename </label>
+          </div>
+          <div
+            style={{ marginLeft: "30%", marginRight: "30%" }}
+            className="form-floating mb-3"
+          >
             <input
               onChange={onChangeUsers}
               disabled={usernameDisabled}
@@ -163,18 +180,27 @@ export default function User() {
               type="username"
               id="username"
               autoComplete="ie-username"
+              className="form-control"
             />
-            <button onClick={resetSelection}>Reset Selections</button>
-            {/*<button onClick={disableUserSelection}>Add User</button>*/}
+            <label htmlFor="username">Username </label>
           </div>
         </form>
+        <button className="btn btn-dark" onClick={resetSelection}>
+          Reset Selections
+        </button>
+        <br />
+        <br />
         <div className="parentLists">
           {showFilebox && (
             <div className="childList" id="fileSelection">
               {fileMatches.map((el, i) => (
                 <div key={i}>
-                  {el.title}
-                  <button onClick={() => disableFileSelection(el.title)}>
+                  {el.title} &nbsp;
+                  <button
+                    style={{ padding: "5px" }}
+                    className="btn btn-secondary"
+                    onClick={() => disableFileSelection(el.title)}
+                  >
                     Select
                   </button>
                 </div>
@@ -185,8 +211,12 @@ export default function User() {
             <div className="childList" id="userSelection">
               {userMatches.map((el, i) => (
                 <div key={i}>
-                  {el.username}
-                  <button onClick={() => disableUserSelection(el.username)}>
+                  {el.username} &nbsp;
+                  <button
+                    style={{ padding: "5px" }}
+                    className="btn btn-secondary"
+                    onClick={() => disableUserSelection(el.username)}
+                  >
                     Add
                   </button>
                 </div>
@@ -206,10 +236,12 @@ export default function User() {
           </p>
         </div>
         <br />
-        <button onClick={addUserToFile}>Confirm</button>
+        <button className="btn btn-primary" onClick={addUserToFile}>
+          Confirm Upload
+        </button>
         <br />
         <br />
-        <h5>Your documents will be displayed here:</h5>
+        <h5>Your files will be displayed below:</h5>
         <br></br>
         <br />
         <br />
@@ -218,17 +250,15 @@ export default function User() {
             <h2>{image.title || "Untitled"}</h2>
             <br />
             <div className="image-list">
-              <img src={image.url} alt={image.title} />
+              <img src={image.url} alt={image.title} />{" "}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button
+                onClick={() => onDeleteFile(image.id)}
+                className="btn btn-danger"
+              >
+                Delete
+              </button>
             </div>
-            <div className="overlay">
-              <div className="text">test text</div>
-            </div>
-            <button
-              onClick={() => onDeleteFile(image.id)}
-              className="delete-file"
-            >
-              Delete
-            </button>
           </div>
         ))}
       </div>
