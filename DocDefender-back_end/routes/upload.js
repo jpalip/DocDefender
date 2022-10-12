@@ -3,7 +3,7 @@ import multer from "multer";
 import multerS3 from "multer-s3";
 
 export default async (req, res) => {
-  const upload = multer(next, {
+  const upload = multer({
     storage: multerS3({
       s3,
       bucket: "docdefender-filestore",
