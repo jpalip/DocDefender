@@ -27,9 +27,10 @@ export default async function (req, res) {
   });
 
   s3.deleteObject(
-    { Bucket: process.env.AWS_BUCKET_NAME, Key: file.title },
+    { Bucket: process.env.DO_SPACES_NAME, Key: file.title },
     function (err, _data) {
       if (err) {
+        console.log(err);
         return res.status(500).json({ error: "Unable to delete file" });
       }
 

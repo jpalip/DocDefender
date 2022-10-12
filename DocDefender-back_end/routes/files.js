@@ -1,22 +1,4 @@
-import { response } from "express";
 import { s3, prisma } from "../index.js";
-
-async function getFile(Key) {
-  const data = s3
-    .getObject({
-      Bucket: "docdefender-filestore",
-      Key,
-    })
-    .promise();
-
-  return data;
-}
-
-function encode(data) {
-  let buf = Buffer.from(JSON.stringify(data));
-  let base64 = buf.toString("base64");
-  return base64;
-}
 
 export default async function (req, res) {
   const id = req.id;
@@ -30,6 +12,8 @@ export default async function (req, res) {
       },
     },
   });
+
+  return res.json({ success: files });
 
   let encodedFiles = [];
 
