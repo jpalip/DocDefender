@@ -6,11 +6,9 @@ export default function Home() {
   return (
     <div id="page-container">
       <header
-        // style={{
-        //   marginTop: "-1%",
-        //   marginLeft: "-100%",
-        //   marginRight: "-100%",
-        // }}
+        style={{
+          marginTop: "5%",
+        }}
         className="bg-dark py-5"
       >
         <div className="container px-5">
@@ -80,7 +78,7 @@ export default function Home() {
                 <i className="bi bi-toggles2"></i>
               </div>
               <img className="homepage-images" src={view} alt="" />
-              <h2 className="h4 fw-bolder">Reliable Accessability</h2>
+              <h2 className="h4 fw-bolder">Reliable Access</h2>
               <p>
                 All files stored within our site will be accessible to their
                 respective owners and authorized members. We guarantee a 99.99%
@@ -90,10 +88,16 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <a className="text-decoration-none" href="/register">
-          Register/Sign-In to an Account
-          <i className="bi bi-arrow-right"></i>
-        </a>
+        <button className="btn btn-primary">
+          <a
+            style={{ textDecoration: "none", color: "white" }}
+            className="text-decoration-none"
+            href="/register"
+          >
+            Register <b>|</b> Login
+            <i className="bi bi-arrow-right"></i>
+          </a>
+        </button>
       </section>
       <section className="bg-light py-5 border-bottom">
         <div className="container px-5 my-5">

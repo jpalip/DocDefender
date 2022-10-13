@@ -88,17 +88,15 @@ img:hover {
 }
 
 .parentList {
-  border: 1px solid black;
   margin: 1rem;
   padding: 2rem 2rem;
   text-align: center;
+  display: inline-flexbox;
 }
 
 .childList {
-  display: inline-block;
   border: 1px solid black;
   padding: 1rem 1rem;
-  vertical-align: middle;
 }
 /* Footer */
 #page-container {
@@ -227,4 +225,12 @@ cross browser support) */
 .homepage-images {
   height: 75px;
   width: 75px;
+}
+
+.active {
+  color: black;
+}
+
+.form-control1 {
+  margin-left: 5%;
 }

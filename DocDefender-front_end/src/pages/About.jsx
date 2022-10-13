@@ -1,16 +1,18 @@
 export default function About() {
   return (
     <div id="page-container">
+      <div
+        style={{ marginTop: "5%" }}
+        id="header"
+        className="p-5 text-center bg-light"
+      >
+        <h2 className="mb-3">Frequently Asked Questions</h2>
+      </div>
       <div id="content-wrap">
-        <h2>
-          <u>Frequently Asked Questions</u>
-        </h2>
-        <br />
-        <br />
         <div className="row">
           <div className="col-md-4 cssanimation sequence fadeInBottom">
             <div
-              className="card border-info text-white bg-dark mb-3"
+              className="card border-info text-white bg-dark bg-gradient mb-3"
               style={{ maxWidth: "25rem" }}
             >
               <div className="card-header fs-5">What is DocDefender?</div>
@@ -25,7 +27,7 @@ export default function About() {
           </div>
           <div className="col-md-4 cssanimation sequence fadeInBottom">
             <div
-              className="card border-info text-light bg-secondary mb-3"
+              className="card border-info text-light bg-secondary bg-gradient mb-3"
               style={{ maxWidth: "25rem" }}
             >
               <div className="card-header fs-5">
@@ -42,7 +44,7 @@ export default function About() {
           </div>
           <div className="col-md-4 cssanimation sequence fadeInBottom">
             <div
-              className="card border-info text-light bg-dark mb-3"
+              className="card border-info text-light bg-dark bg-gradient mb-3"
               style={{ maxWidth: "50rem" }}
             >
               <div className="card-header fs-5">Can I encrypt any file?</div>
@@ -60,7 +62,7 @@ export default function About() {
         <div className="row">
           <div className="col-md-4 cssanimation sequence fadeInBottom">
             <div
-              className="card border-info text-light bg-secondary mb-3"
+              className="card border-info text-light bg-secondary bg-gradient mb-3"
               style={{ maxWidth: "25rem" }}
             >
               <div className="card-header fs-5">
@@ -94,7 +96,7 @@ export default function About() {
           </div>
           <div className="col-md-4 cssanimation sequence fadeInBottom">
             <div
-              className="card border-info text-light bg-secondary mb-3"
+              className="card border-info text-light bg-secondary bg-gradient mb-3"
               style={{ maxWidth: "25rem" }}
             >
               <div className="card-header fs-5">
@@ -115,15 +117,15 @@ export default function About() {
         <div className="row justify-content-center">
           <div className="col-md-4 cssanimation sequence fadeInBottom">
             <div
-              className="card border-info text-dark bg-warning mb-3"
+              className="card border-info text-light bg-primary bg-gradient mb-3"
               style={{ maxWidth: "25rem" }}
             >
               <div className="card-header fs-5">
                 <a
-                  className="btn btn-primary"
+                  className="btn btn-dark"
                   href="mailto:support@docdefender.org"
                 >
-                  Contact Us!
+                  Contact Us
                 </a>
               </div>
               <div className="card-body">

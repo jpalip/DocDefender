@@ -48,7 +48,10 @@ export default function Register() {
                           autoComplete="ie-username"
                           className="form-control"
                         />
-                        <label className="form-label" htmlFor="username">
+                        <label
+                          className="form-label form-control1"
+                          htmlFor="username"
+                        >
                           Username
                         </label>
                       </div>
@@ -59,7 +62,10 @@ export default function Register() {
                           autoComplete="ie-password"
                           className="form-control"
                         />
-                        <label className="form-label" htmlFor="password">
+                        <label
+                          className="form-label form-control1"
+                          htmlFor="password"
+                        >
                           Password
                         </label>
                       </div>

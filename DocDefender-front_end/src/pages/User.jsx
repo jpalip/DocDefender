@@ -128,15 +128,17 @@ export default function User() {
 
   return (
     <div>
-      <h1>
-        <u>File Vault</u>
-      </h1>
+      <div
+        style={{ marginTop: "5%" }}
+        id="header"
+        className="p-5 text-center bg-light"
+      >
+        <h2 className="mb-3">File Vault</h2>
+      </div>
       <div className="files">
         <br />
         <h5>Upload a file here to encrypt: </h5>
         <p>(PDF, JPEG/JPG, or PNG)</p>
-        <br />
-        <br />
         <form useref="uploadForm" id="uploadForm" onSubmit={fileUpload}>
           <input
             id="input-b3"
@@ -167,7 +169,9 @@ export default function User() {
               autoComplete="ie-title"
               className="form-control"
             />
-            <label htmlFor="filename">Filename </label>
+            <label className="form-control1" htmlFor="filename">
+              Filename{" "}
+            </label>
           </div>
           <div
             style={{ marginLeft: "30%", marginRight: "30%" }}
@@ -182,17 +186,26 @@ export default function User() {
               autoComplete="ie-username"
               className="form-control"
             />
-            <label htmlFor="username">Username </label>
+            <label className="form-control1" htmlFor="username">
+              Username{" "}
+            </label>
           </div>
         </form>
         <button className="btn btn-dark" onClick={resetSelection}>
           Reset Selections
         </button>
-        <br />
-        <br />
-        <div className="parentLists">
+        <div className="parentList">
           {showFilebox && (
-            <div className="childList" id="fileSelection">
+            <div
+              style={{
+                color: "white",
+                marginLeft: "20%",
+                width: "30%",
+                float: "left",
+              }}
+              className="childList card bg-dark bg-gradient mb-3"
+              id="fileSelection"
+            >
               {fileMatches.map((el, i) => (
                 <div key={i}>
                   {el.title} &nbsp;
@@ -203,12 +216,22 @@ export default function User() {
                   >
                     Select
                   </button>
+                  <br />
                 </div>
               ))}
             </div>
           )}
           {showUserbox && (
-            <div className="childList" id="userSelection">
+            <div
+              style={{
+                color: "white",
+                marginRight: "20%",
+                width: "30%",
+                float: "right",
+              }}
+              className="childList card bg-dark bg-gradient mb-3"
+              id="userSelection"
+            >
               {userMatches.map((el, i) => (
                 <div key={i}>
                   {el.username} &nbsp;
@@ -219,21 +242,22 @@ export default function User() {
                   >
                     Add
                   </button>
+                  <br />
                 </div>
               ))}
             </div>
           )}
         </div>
         <br />
-        <div>
-          <p id="selectedFile">
+        <div style={{ margin: "auto", width: "40%" }} className="bg-light mb-3">
+          <h5 id="selectedFile">
             Selected File: <b>{selectedFile}</b>
-          </p>
+          </h5>
         </div>
-        <div>
-          <p id="selectedUser">
+        <div style={{ margin: "auto", width: "40%" }} className="bg-light mb-3">
+          <h5 id="selectedUser">
             Selected User: <b>{selectedUser}</b>
-          </p>
+          </h5>
         </div>
         <br />
         <button className="btn btn-primary" onClick={addUserToFile}>
@@ -242,13 +266,10 @@ export default function User() {
         <br />
         <br />
         <h5>Your files will be displayed below:</h5>
-        <br></br>
-        <br />
-        <br />
+        <hr />
         {files.map((image, i) => (
           <div className="container" key={i}>
             <h2>{image.title || "Untitled"}</h2>
-            <br />
             <div className="image-list">
               <img src={image.url} alt={image.title} />{" "}
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -259,6 +280,7 @@ export default function User() {
                 Delete
               </button>
             </div>
+            <hr />
           </div>
         ))}
       </div>

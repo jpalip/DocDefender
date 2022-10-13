@@ -24,7 +24,13 @@ export default function Taskbar() {
   }, [getUsername, authed]);
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar
+      bg="dark"
+      variant="dark"
+      expand="sm"
+      className="fixed-top"
+      style={{ height: "8%" }}
+    >
       <Container>
         <Navbar.Brand className="fs-3" href="/">
           <img
@@ -44,6 +50,7 @@ export default function Taskbar() {
           {authed() || <Nav.Link href="/sign-in">Sign In</Nav.Link>}
           {authed() && (
             <Button
+              style={{ height: "8%", marginTop: "2.5%" }}
               variant="primary"
               size="sm"
               onClick={logoutUser}

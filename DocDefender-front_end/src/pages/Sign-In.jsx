@@ -54,7 +54,7 @@ export default function SignIn() {
                             textAlign: "center",
                             justifyContent: "center",
                           }}
-                          className="form-label"
+                          className="form-label form-control1"
                           htmlFor="username"
                         >
                           Username
@@ -67,7 +67,10 @@ export default function SignIn() {
                           id="password"
                           className="form-control"
                         />
-                        <label className="form-label" htmlFor="password">
+                        <label
+                          className="form-label form-control1"
+                          htmlFor="password"
+                        >
                           Password
                         </label>
                       </div>
