@@ -29,7 +29,7 @@ export default function Taskbar() {
       variant="dark"
       expand="sm"
       className="fixed-top"
-      style={{ height: "8%" }}
+      style={{ height: "7vh" }}
     >
       <Container>
         <Navbar.Brand className="fs-3" href="/">

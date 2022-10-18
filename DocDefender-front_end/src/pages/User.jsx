@@ -136,9 +136,13 @@ export default function User() {
         <h2 className="mb-3">File Vault</h2>
       </div>
       <div className="files">
-        <br />
         <h5>Upload a file here to encrypt: </h5>
-        <p>(PDF, JPEG/JPG, or PNG)</p>
+        <p style={{ color: "#656464" }}>
+          Supported File Types:
+          <br />
+          (PDF, JPEG/JPG, GIF, SVG, MP4, MOV, AVI, DOC, DOCX, TXT, HTML, XLS,
+          XLSX, ADCHD, PPT, PPTX, MP3, M4A, WAV, ZIP, EXE, JAR + more)
+        </p>
         <form useref="uploadForm" id="uploadForm" onSubmit={fileUpload}>
           <input
             id="input-b3"
