@@ -287,6 +287,16 @@ export default function User() {
             <hr />
           </div>
         ))}
+        <h5>Transaction Log:</h5>
+        {files.sort( (a,b) => a.createdAt > b.createdAt ? 1 : -1).map((image) => (
+          <div className="container" key={image.createdAt}>
+            <h2>{image.title || "Untitled"} | Date:{image.createdAt}</h2>
+            <div className="image-list">
+              <img src={image.url} alt={image.title} />{" "}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
