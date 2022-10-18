@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useAuth from "../hooks/hooks";
+import moment from "moment";
 
 export default function User() {
   const [files, setFiles] = useState([]);
@@ -288,15 +289,16 @@ export default function User() {
           </div>
         ))}
         <h5>Transaction Log:</h5>
-        {files.sort( (a,b) => a.createdAt > b.createdAt ? 1 : -1).map((image) => (
-          <div className="container" key={image.createdAt}>
-            <h2>{image.title || "Untitled"} | Date:{image.createdAt}</h2>
-            <div className="image-list">
-              <img src={image.url} alt={image.title} />{" "}
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {files
+          .sort((a, b) => (a.createdAt > b.createdAt ? 1 : -1))
+          .map((image) => (
+            <div className="container" key={image.createdAt}>
+              <h2>
+                {image.title || "Untitled"} | Date:{" "}
+                {moment(image.createdAt).format("MM/DD/YY HH:mm:ss")}
+              </h2>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );
