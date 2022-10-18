@@ -234,3 +234,8 @@ cross browser support) */
 .form-control1 {
   margin-left: 5%;
 }
+
+.displayed-files {
+  height: auto;
+  width: 60%;
+}

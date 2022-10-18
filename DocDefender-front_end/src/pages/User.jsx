@@ -49,6 +49,7 @@ export default function User() {
         alert(r.data.error);
       } else if (r.data.success) {
         alert(r.data.success);
+        window.location.reload(false);
       }
     });
   };
@@ -66,6 +67,7 @@ export default function User() {
         alert(r.data.error);
       } else if (r.data.success) {
         alert(r.data.success);
+        window.location.reload(false);
       }
     });
   };
@@ -272,14 +274,18 @@ export default function User() {
         <br />
         <h5>Your files will be displayed below:</h5>
         <hr />
-        {files.map((image, i) => (
+        {files.map((file, i) => (
           <div className="container" key={i}>
-            <h2>{image.title || "Untitled"}</h2>
+            <h2>{file.title || "Untitled"}</h2>
             <div className="image-list">
-              <img src={image.url} alt={image.title} />{" "}
+              <img
+                className="displayed-files"
+                src={file.url}
+                alt={file.title}
+              />{" "}
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <button
-                onClick={() => onDeleteFile(image.id)}
+                onClick={() => onDeleteFile(file.id)}
                 className="btn btn-danger"
               >
                 Delete
@@ -291,11 +297,11 @@ export default function User() {
         <h5>Transaction Log:</h5>
         {files
           .sort((a, b) => (a.createdAt > b.createdAt ? 1 : -1))
-          .map((image) => (
-            <div className="container" key={image.createdAt}>
+          .map((file) => (
+            <div className="container" key={file.createdAt}>
               <h2>
-                {image.title || "Untitled"} | Date:{" "}
-                {moment(image.createdAt).format("MM/DD/YY HH:mm:ss")}
+                {file.title || "Untitled"} <b>|</b> Date:{" "}
+                {moment(file.createdAt).format("MM/DD/YY HH:mm:ss")}
               </h2>
             </div>
           ))}
