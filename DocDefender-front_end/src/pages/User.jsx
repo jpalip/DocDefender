@@ -24,6 +24,7 @@ export default function User() {
     deleteFile,
     addUserToFile,
     authed,
+    requestView,
   } = useAuth();
   useRedirectIfNotAuthed("/sign-in");
 
@@ -52,6 +53,17 @@ export default function User() {
         window.location.reload(false);
       }
     });
+  };
+
+  const reqView = (...params) => {
+    requestView(params[0], params[1]).then((r) => {
+      if (r.data.success) {
+        alert(r.data.success);
+        console.log("no error");
+      }
+      console.log("error");
+    });
+    window.location.reload(false);
   };
 
   const confirmAddUserToFile = () => {
@@ -284,6 +296,12 @@ export default function User() {
                 alt={file.title}
               />{" "}
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button
+                onClick={() => reqView(file.title, file.id)}
+                className="btn btn-primary"
+              >
+                Request View
+              </button>
               <button
                 onClick={() => onDeleteFile(file.id)}
                 className="btn btn-danger"

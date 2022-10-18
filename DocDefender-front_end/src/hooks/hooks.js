@@ -130,6 +130,17 @@ const useAuth = () => {
       });
   }
 
+  function requestView(filename, fileId) {
+    return axios
+      .get(`${API_URL}/requestView?filename=${filename}/${fileId}`, {
+        headers: authHeader(),
+      })
+      .catch(handleErrorResponse)
+      .then((response) => {
+        return response;
+      });
+  }
+
   function getFiles() {
     return axios
       .get(`${API_URL}/files`, {
@@ -175,6 +186,7 @@ const useAuth = () => {
     uploadFile,
     addUserToFile,
     deleteFile,
+    requestView,
   };
 };
 

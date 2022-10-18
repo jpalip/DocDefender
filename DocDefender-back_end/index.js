@@ -10,6 +10,7 @@ import getUsername from "./routes/getUsername.js";
 import searchFile from "./routes/searchFile.js";
 import upload from "./routes/upload.js";
 import deleteFile from "./routes/deleteFile.js";
+import requestView from "./routes/requestView.js";
 import aws from "aws-sdk";
 import dotenv from "dotenv";
 
@@ -45,6 +46,7 @@ const main = async () => {
   app.get("/searchUser", searchUser);
   app.get("/getUsername", verifyAuth, getUsername);
   app.get("/searchFile", verifyAuth, searchFile);
+  app.get("/requestView", verifyAuth, requestView);
 
   const port = process.env.PORT || 8393;
   app.listen(port, () => console.log("Listening on port", port));
