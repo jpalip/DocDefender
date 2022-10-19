@@ -5,11 +5,11 @@ import jwt from "jsonwebtoken";
 export default async (req, res) => {
   let { username, password } = req.body;
 
+  username = username.toLowerCase();
+
   if (!username || !password) {
     return res.status(400).json({ error: "Missing username or password" });
   }
-
-  username = username.toLowerCase();
 
   if (username.length < 3 || username.length > 20) {
     return res.json({ error: "Username must be between 3 and 20 characters" });

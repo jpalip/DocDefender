@@ -27,11 +27,16 @@ const useAuth = () => {
 
   function addUserToFile(username, filename) {
     return axios
-      .post(`${API_URL}/addUserToFile`, {
-        headers: authHeader(),
-        username,
-        filename,
-      })
+      .post(
+        `${API_URL}/addUserToFile`,
+        {
+          headers: authHeader(),
+        },
+        {
+          username,
+          filename,
+        }
+      )
       .catch(handleErrorResponse)
       .then((response) => {
         return response;

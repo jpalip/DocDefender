@@ -11,6 +11,7 @@ import searchFile from "./routes/searchFile.js";
 import upload from "./routes/upload.js";
 import deleteFile from "./routes/deleteFile.js";
 import requestView from "./routes/requestView.js";
+import addUserToFile from "./routes/addUserToFile.js";
 import aws from "aws-sdk";
 import dotenv from "dotenv";
 
@@ -42,6 +43,7 @@ const main = async () => {
   app.post("/register", register);
   app.post("/upload", verifyAuth, upload);
   app.post("/deleteFile", verifyAuth, deleteFile);
+  app.post("/addUserToFile", addUserToFile);
   app.get("/files", verifyAuth, files);
   app.get("/searchUser", searchUser);
   app.get("/getUsername", verifyAuth, getUsername);

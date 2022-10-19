@@ -5,11 +5,15 @@ export default async (req, res) => {
     return res.status(400).send("Missing filename or username");
   }
 
-  const user = await prisma.user.update({
+  console.log("Username: ", req.body.username);
+  console.log("Filename: ", req.body.filename);
+
+  await prisma.file.update({
     where: {
-      data: {
-        username: req.body.username,
-      },
+      id: parseInt(fileId),
+    },
+    data: {
+      url: fileURL,
     },
   });
 };

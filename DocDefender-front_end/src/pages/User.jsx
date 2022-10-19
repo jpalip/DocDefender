@@ -59,18 +59,15 @@ export default function User() {
     requestView(params[0], params[1]).then((r) => {
       if (r.data.success) {
         alert(r.data.success);
-        console.log("no error");
       }
-      console.log("error");
     });
     window.location.reload(false);
   };
 
-  const confirmAddUserToFile = () => {
-    // if (!username || !filename) {
-    //   return alert("Error: Missing user or filename selection");
-    // }
-    // addUser;
+  const confirmAddUserToFile = (...params) => {
+    console.log(params[0], params[1]);
+
+    addUserToFile(params[0], params[1]);
   };
 
   const onDeleteFile = (id) => {
@@ -279,8 +276,11 @@ export default function User() {
           </h5>
         </div>
         <br />
-        <button className="btn btn-primary" onClick={addUserToFile}>
-          Confirm Upload
+        <button
+          className="btn btn-primary"
+          onClick={() => confirmAddUserToFile({ selectedUser, selectedFile })}
+        >
+          Confirm Add
         </button>
         <br />
         <br />

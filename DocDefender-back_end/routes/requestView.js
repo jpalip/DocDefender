@@ -18,6 +18,19 @@ export default async (req, res) => {
 
   var fileURL = s3.getSignedUrl("getObject", params);
 
+  const result = await prisma.file.findUnique({
+    where: {
+      id: parseInt(fileId),
+    },
+  });
+
+  console.log(result.authorId, req.id);
+
+  // Fixes security vulnerability - only the owner of the image can request access
+  if (result.authorId != req.id) {
+    return res.status(401);
+  }
+
   await prisma.file.update({
     where: {
       id: parseInt(fileId),
