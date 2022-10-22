@@ -25,11 +25,11 @@ export default function Taskbar() {
 
   return (
     <Navbar
+      collapseOnSelect
       bg="dark"
       variant="dark"
-      expand="sm"
-      className="fixed-top"
-      style={{ height: "7vh" }}
+      expand="lg"
+      className="sticky-top"
     >
       <Container>
         <Navbar.Brand className="fs-3" href="/">
@@ -42,8 +42,9 @@ export default function Taskbar() {
           />{" "}
           DocDefender
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Nav className="fs-4">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="ms-auto fs-4">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/about">About</Nav.Link>
           <Nav.Link href="/user">My Files</Nav.Link>
@@ -59,7 +60,8 @@ export default function Taskbar() {
               Logout: {username}
             </Button>
           )}
-        </Nav>
+          </Nav>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );
