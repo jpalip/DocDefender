@@ -7,7 +7,7 @@ export default function Home() {
     <div id="page-container">
       <header
         style={{
-          marginTop: "5%",
+          marginTop: "2%",
         }}
         className="bg-dark py-5"
       >

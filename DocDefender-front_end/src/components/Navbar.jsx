@@ -44,22 +44,22 @@ export default function Taskbar() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="ms-auto fs-4">
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/about">About</Nav.Link>
-          <Nav.Link href="/user">My Files</Nav.Link>
-          {authed() || <Nav.Link href="/sign-in">Sign In</Nav.Link>}
-          {authed() && (
-            <Button
-              style={{ height: "8%", marginTop: "2.5%" }}
-              variant="primary"
-              size="sm"
-              onClick={logoutUser}
-              className="fs-6"
-            >
-              Logout: {username}
-            </Button>
-          )}
+          <Nav className="ms-auto fs-4">
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/about">About</Nav.Link>
+            <Nav.Link href="/user">My Files</Nav.Link>
+            {authed() || <Nav.Link href="/sign-in">Sign In</Nav.Link>}
+            {authed() && (
+              <Button
+                style={{ height: "8%", marginTop: "2.5%" }}
+                variant="primary"
+                size="sm"
+                onClick={logoutUser}
+                className="fs-6"
+              >
+                Logout: {username}
+              </Button>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

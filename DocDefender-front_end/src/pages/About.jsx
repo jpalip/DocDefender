@@ -2,7 +2,7 @@ export default function About() {
   return (
     <div id="page-container">
       <div
-        style={{ marginTop: "5%" }}
+        style={{ marginTop: "2%" }}
         id="header"
         className="p-5 text-center bg-light"
       >
