@@ -174,15 +174,19 @@ export default function Home() {
                     </li>
                     <li className="mb-2">
                       <i className="bi bi-check text-primary"></i>
-                      Ability to add members to access your files
+                      Addition of Friends List functionality
                     </li>
                     <li className="mb-2">
                       <i className="bi bi-check text-primary"></i>
-                      Dedicated support
+                      Can add other members to your friends list for easy sending and receiving 
+                    </li>
+                    <li className="mb-2">
+                      <i className="bi bi-check text-primary"></i>
+                     24/7 Dedicated customer support
                     </li>
                     <li className="text-muted">
                       <i className="bi bi-x"></i>
-                      Complete Audit Log of access checks with security features
+                      Complete Audit Log of access checks with additional security features
                     </li>
                   </ul>
                 </div>
