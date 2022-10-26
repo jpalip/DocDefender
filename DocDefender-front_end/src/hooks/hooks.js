@@ -28,14 +28,10 @@ const useAuth = () => {
   function addUserToFile(username, filename) {
     return axios
       .post(
-        `${API_URL}/addUserToFile`,
+        `${API_URL}/addUserToFile`, {username, filename},
         {
           headers: authHeader(),
         },
-        {
-          username,
-          filename,
-        }
       )
       .catch(handleErrorResponse)
       .then((response) => {

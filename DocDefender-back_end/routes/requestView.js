@@ -6,7 +6,6 @@ export default async (req, res) => {
   var filename = fileInfo[0];
 
   if (!req.query.filename) {
-    console.log(req.query);
     return res.status(400).json({ error: "Missing filename and/or fileId" });
   }
 
