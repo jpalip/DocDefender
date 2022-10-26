@@ -9,8 +9,9 @@ import logo from "./icon.png";
 /*  Navbar function renamed to Taskbar in order to resolve naming
     conflict with Navbar class in Bootstrap */
 export default function Taskbar() {
-  const { getUsername, authed, logoutUser } = useAuth();
+  const { getUsername, authed, logoutUser, isAdmin } = useAuth();
   const [username, setUsername] = useState("");
+  const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
     if (!authed()) {
@@ -19,6 +20,11 @@ export default function Taskbar() {
     getUsername().then((r) => {
       if (r.data) {
         setUsername(r.data.username);
+      }
+    });
+    isAdmin(username).then((r) => {
+      if (r.data.isAdmin) {
+        setAdmin(true);
       }
     });
   }, [getUsername, authed]);
@@ -59,6 +65,15 @@ export default function Taskbar() {
               >
                 Logout: {username}
               </Button>
+            )}
+            {admin || <></>}
+            {admin && (
+              <Nav.Link
+                style={{ color: "RED", borderStyle: "dashed" }}
+                href="/admin"
+              >
+                Admin
+              </Nav.Link>
             )}
           </Nav>
         </Navbar.Collapse>

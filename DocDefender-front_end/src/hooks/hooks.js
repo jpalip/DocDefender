@@ -161,6 +161,17 @@ const useAuth = () => {
     return localStorage.getItem("token") !== null;
   }
 
+  function isAdmin(username) {
+    return axios
+      .get(`${API_URL}/isAdmin?=${username}`, {
+        headers: authHeader(),
+      })
+      .catch(handleErrorResponse)
+      .then((response) => {
+        return response;
+      });
+  }
+
   function useRedirectIfAuthed(href) {
     useEffect(() => {
       if (authed()) {
@@ -186,6 +197,7 @@ const useAuth = () => {
     logoutUser,
     getFiles,
     getUsername,
+    isAdmin,
     searchUser,
     searchFile,
     uploadFile,

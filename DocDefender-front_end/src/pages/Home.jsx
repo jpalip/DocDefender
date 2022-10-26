@@ -33,9 +33,17 @@ export default function Home() {
                   </a>
                   <a
                     className="btn btn-outline-light btn-lg px-4"
+                    style={{ marginLeft: "2%", marginRight: "2%" }}
                     href="/about"
                   >
                     Learn More
+                  </a>
+                  <a
+                    className="btn btn-primary btn-lg px-4 me-sm-3"
+                    href="/sign-in"
+                  >
+                    Register | Login
+                    <i className="bi bi-arrow-right"></i>
                   </a>
                 </div>
               </div>
@@ -88,16 +96,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <button className="btn btn-primary">
-          <a
-            style={{ textDecoration: "none", color: "white" }}
-            className="text-decoration-none"
-            href="/register"
-          >
-            Register <b>|</b> Login
-            <i className="bi bi-arrow-right"></i>
-          </a>
-        </button>
       </section>
       <section className="bg-light py-5 border-bottom">
         <div className="container px-5 my-5">
