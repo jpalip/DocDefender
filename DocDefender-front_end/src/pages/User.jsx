@@ -57,6 +57,7 @@ export default function User() {
 
   const reqView = (...params) => {
     requestView(params[0], params[1]).then((r) => {
+      console.log(r.data);
       if (r.data.success) {
         alert(r.data.success);
       }

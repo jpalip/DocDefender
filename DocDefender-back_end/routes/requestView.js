@@ -1,13 +1,15 @@
 import { prisma, s3 } from "../index.js";
 
 export default async (req, res) => {
-  const fileInfo = req.query.filename.split("/");
-  var fileId = fileInfo[1];
-  var filename = fileInfo[0];
+  var fileId = parseInt(req.query.fileId);
+  var filename = req.query.filename;
 
-  if (!req.query.filename) {
-    console.log(req.query);
-    return res.status(400).json({ error: "Missing filename and/or fileId" });
+  if (!filename) {
+    return res.status(400).json({ error: "Missing filename" });
+  }
+
+  if (!fileId) {
+    return res.status(400).json({ error: "FileId is invalid or missing" });
   }
 
   var params = {
@@ -20,7 +22,7 @@ export default async (req, res) => {
 
   const result = await prisma.file.findUnique({
     where: {
-      id: parseInt(fileId),
+      id: fileId,
     },
   });
 
@@ -31,7 +33,7 @@ export default async (req, res) => {
 
   await prisma.file.update({
     where: {
-      id: parseInt(fileId),
+      id: fileId,
     },
     data: {
       url: fileURL,

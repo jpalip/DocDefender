@@ -137,8 +137,12 @@ const useAuth = () => {
 
   function requestView(filename, fileId) {
     return axios
-      .get(`${API_URL}/requestView?filename=${filename}/${fileId}`, {
+      .get(`${API_URL}/requestView`, {
         headers: authHeader(),
+        params: {
+          filename,
+          fileId,
+        },
       })
       .catch(handleErrorResponse)
       .then((response) => {
