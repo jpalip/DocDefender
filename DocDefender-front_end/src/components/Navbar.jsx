@@ -9,8 +9,9 @@ import logo from "./icon.png";
 /*  Navbar function renamed to Taskbar in order to resolve naming
     conflict with Navbar class in Bootstrap */
 export default function Taskbar() {
-  const { getUsername, authed, logoutUser } = useAuth();
+  const { getUsername, authed, logoutUser, isAdmin } = useAuth();
   const [username, setUsername] = useState("");
+  const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
     if (!authed()) {
@@ -21,7 +22,12 @@ export default function Taskbar() {
         setUsername(r.data.username);
       }
     });
-  }, [getUsername, authed]);
+    isAdmin(username).then((r) => {
+      if (r.data.isAdmin) {
+        setAdmin(true);
+      }
+    });
+  }, [getUsername, isAdmin, username, authed]);
 
   return (
     <Navbar
@@ -48,12 +54,26 @@ export default function Taskbar() {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/about">About</Nav.Link>
             <Nav.Link href="/user">My Files</Nav.Link>
+            {admin || <></>}
+            {admin && (
+              <Nav.Link
+                className="btn btn-danger"
+                style={{
+                  color: "WHITE",
+                  marginRight: "1%",
+                }}
+                href="/admin"
+              >
+                Admin
+              </Nav.Link>
+            )}
+            <div></div>
             {authed() || <Nav.Link href="/sign-in">Sign In</Nav.Link>}
             {authed() && (
               <Button
-                style={{ height: "8%", marginTop: "2.5%" }}
+                style={{ height: "8%", marginTop: "1.5%" }}
                 variant="primary"
-                size="sm"
+                size="lg"
                 onClick={logoutUser}
                 className="fs-6"
               >

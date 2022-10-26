@@ -133,8 +133,12 @@ const useAuth = () => {
 
   function requestView(filename, fileId) {
     return axios
-      .get(`${API_URL}/requestView?filename=${filename}/${fileId}`, {
+      .get(`${API_URL}/requestView`, {
         headers: authHeader(),
+        params: {
+          filename,
+          fileId,
+        },
       })
       .catch(handleErrorResponse)
       .then((response) => {
@@ -155,6 +159,17 @@ const useAuth = () => {
 
   function authed() {
     return localStorage.getItem("token") !== null;
+  }
+
+  function isAdmin(username) {
+    return axios
+      .get(`${API_URL}/isAdmin?=${username}`, {
+        headers: authHeader(),
+      })
+      .catch(handleErrorResponse)
+      .then((response) => {
+        return response;
+      });
   }
 
   function useRedirectIfAuthed(href) {
@@ -182,6 +197,7 @@ const useAuth = () => {
     logoutUser,
     getFiles,
     getUsername,
+    isAdmin,
     searchUser,
     searchFile,
     uploadFile,
