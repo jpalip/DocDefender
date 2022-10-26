@@ -27,7 +27,7 @@ export default function Taskbar() {
         setAdmin(true);
       }
     });
-  }, [getUsername, authed]);
+  }, [getUsername, isAdmin, username, authed]);
 
   return (
     <Navbar
@@ -69,7 +69,11 @@ export default function Taskbar() {
             {admin || <></>}
             {admin && (
               <Nav.Link
-                style={{ color: "RED", borderStyle: "dashed" }}
+                style={{
+                  color: "RED",
+                  borderStyle: "dashed",
+                  display: "inline-block",
+                }}
                 href="/admin"
               >
                 Admin
