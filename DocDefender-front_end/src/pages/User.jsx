@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import useAuth from "../hooks/hooks";
 import moment from "moment";
 
@@ -50,19 +50,18 @@ export default function User() {
         alert(r.data.error);
       } else if (r.data.success) {
         alert(r.data.success);
-        window.location.reload(false);
+        window.location.reload();
       }
     });
   };
 
   const reqView = (...params) => {
     requestView(params[0], params[1]).then((r) => {
-      console.log(r.data);
       if (r.data.success) {
         alert(r.data.success);
+        window.location.reload();
       }
     });
-    window.location.reload(false);
   };
 
   const confirmAddUserToFile = (...params) => {

@@ -1,4 +1,3 @@
-import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import useAuth from "../hooks/hooks";
 import Container from "react-bootstrap/Container";
@@ -59,8 +58,7 @@ export default function Taskbar() {
               <Nav.Link
                 className="btn btn-danger"
                 style={{
-                  color: "WHITE",
-                  marginRight: "1%",
+                  color: "white",
                 }}
                 href="/admin"
               >
@@ -70,15 +68,15 @@ export default function Taskbar() {
             <div></div>
             {authed() || <Nav.Link href="/sign-in">Sign In</Nav.Link>}
             {authed() && (
-              <Button
-                style={{ height: "8%", marginTop: "1.5%" }}
+              <Nav.Link
+                style={{ height: "8%", marginTop: "1.5%", color: "white" }}
+                className="btn btn-primary fs-6"
                 variant="primary"
                 size="lg"
                 onClick={logoutUser}
-                className="fs-6"
               >
                 Logout: {username}
-              </Button>
+              </Nav.Link>
             )}
           </Nav>
         </Navbar.Collapse>
