@@ -239,3 +239,9 @@ cross browser support) */
   height: auto;
   width: 60%;
 }
+
+.file-action-btns {
+  margin: 1%;
+  justify-content: center;
+  align-items: center;
+}

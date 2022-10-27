@@ -4,9 +4,12 @@ export default async (req, res) => {
   var fileId = parseInt(req.query.fileId);
   var filename = req.query.filename;
 
-  if (!req.query.filename) {
-    console.log(req.query);
-    return res.status(400).json({ error: "Missing filename and/or fileId" });
+  if (!filename) {
+    return res.status(400).json({ error: "Missing or invalid filename" });
+  }
+
+  if (!fileId) {
+    return res.status(400).json({ error: "Missing or invalid fileId" });
   }
 
   var params = {

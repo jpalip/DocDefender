@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import useAuth from "../hooks/hooks";
 import moment from "moment";
+import FilePreview from "../components/FilePreview";
 
 export default function User() {
   const [files, setFiles] = useState([]);
@@ -290,21 +291,25 @@ export default function User() {
           <div className="container" key={i}>
             <h2>{file.title || "Untitled"}</h2>
             <div className="image-list">
-              <img
+              <FilePreview
                 className="displayed-files"
                 src={file.url}
                 alt={file.title}
-              />{" "}
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              />
+            </div>
+            <div>
               <button
                 onClick={() => reqView(file.title, file.id)}
-                className="btn btn-primary"
+                className="btn btn-primary file-action-btns"
               >
-                Request View
+                View
+              </button>
+              <button className="btn btn-primary file-action-btns">
+                Download
               </button>
               <button
                 onClick={() => onDeleteFile(file.id)}
-                className="btn btn-danger"
+                className="btn btn-danger file-action-btns"
               >
                 Delete
               </button>
