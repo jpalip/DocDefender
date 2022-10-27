@@ -23,15 +23,17 @@ const useAuth = () => {
   function logoutUser() {
     localStorage.removeItem("token");
     navigate("/sign-in");
+    window.location.reload();
   }
 
   function addUserToFile(username, filename) {
     return axios
       .post(
-        `${API_URL}/addUserToFile`, {username, filename},
+        `${API_URL}/addUserToFile`,
+        { username, filename },
         {
           headers: authHeader(),
-        },
+        }
       )
       .catch(handleErrorResponse)
       .then((response) => {

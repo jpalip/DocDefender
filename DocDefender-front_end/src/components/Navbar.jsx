@@ -22,9 +22,7 @@ export default function Taskbar() {
       }
     });
     isAdmin(username).then((r) => {
-      if (r.data.isAdmin) {
-        setAdmin(true);
-      }
+      setAdmin(r.data.isAdmin);
     });
   }, [getUsername, isAdmin, username, authed]);
 
