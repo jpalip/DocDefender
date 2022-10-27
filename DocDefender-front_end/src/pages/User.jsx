@@ -286,6 +286,10 @@ export default function User() {
         <br />
         <br />
         <h5>Your files will be displayed below:</h5>
+        <p>
+          NOTE: You must request a view first, to be able to successfully
+          download your files.
+        </p>
         <hr />
         {files.map((file, i) => (
           <div className="container" key={i}>
@@ -304,9 +308,15 @@ export default function User() {
               >
                 View
               </button>
-              <button className="btn btn-primary file-action-btns">
+              <a
+                className="btn btn-primary file-action-btns"
+                href={file.url}
+                download={file.title}
+                target="_blank"
+                rel="noreferrer"
+              >
                 Download
-              </button>
+              </a>
               <button
                 onClick={() => onDeleteFile(file.id)}
                 className="btn btn-danger file-action-btns"
