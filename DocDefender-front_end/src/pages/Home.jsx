@@ -205,12 +205,13 @@ export default function Home() {
                     </div>
                     <div className="ms-4">
                       <p className="mb-1">
-                        Thank you for putting together such a wonderful
-                        application! I have always had a need for protecting
-                        private files, and this is the perfect place to do it!
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Vivamus in faucibus sapien, ut varius nisi. Praesent
+                        eget mi quis dolor lobortis suscipit. Nam ac mauris et
+                        sem rutrum finibus eu eget ante.
                       </p>
                       <div className="small text-muted">
-                        - Gianluca Ancona, UAlbany Student
+                        - Member Name, WhoIs
                       </div>
                     </div>
                   </div>
@@ -224,13 +225,13 @@ export default function Home() {
                     </div>
                     <div className="ms-4">
                       <p className="mb-1">
-                        Wow, what can I say. My jaw dropped upon visiting this
-                        wonderful site! I almost dropped my apple spiced latte
-                        when I saw it. Amazing application, and even better
-                        developers!
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Vivamus in faucibus sapien, ut varius nisi. Praesent
+                        eget mi quis dolor lobortis suscipit. Nam ac mauris et
+                        sem rutrum finibus eu eget ante.
                       </p>
                       <div className="small text-muted">
-                        - Chris Drago (They/Them), UAlbany Student
+                        - Member Name, WhoIs
                       </div>
                     </div>
                   </div>
