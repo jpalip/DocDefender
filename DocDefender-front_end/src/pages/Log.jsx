@@ -39,8 +39,8 @@ export default function Log(){
               </h3>
             </div>
           ))}
-            <footer id="footer">&#169;DocDefender 2022</footer>
           </section>
+          <footer id="footer">&#169;DocDefender 2022</footer>
         </div>
     );
 }

@@ -44,16 +44,16 @@ export default function Taskbar() {
           />{" "}
           DocDefender
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
         <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto fs-4">
             <Nav.Link href="/about">About</Nav.Link>
             <NavDropdown
             title="My Files"
-            id="collasible-nav-dropdown"
-            className="dropdown-menu-dark">
-              <NavDropdown.Item href="/user">File Vault</NavDropdown.Item>
-              <NavDropdown.Divider />
+            id="collasible-nav-dropdown">
+              <NavDropdown.Item href="/user">
+                File Vault
+              </NavDropdown.Item>
               <NavDropdown.Item href="/log">
                 Transaction Log
               </NavDropdown.Item>
