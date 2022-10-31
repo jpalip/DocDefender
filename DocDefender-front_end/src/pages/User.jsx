@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import useAuth from "../hooks/hooks";
-import moment from "moment";
 import FilePreview from "../components/FilePreview";
 
 export default function User() {
@@ -327,18 +326,7 @@ export default function User() {
             <hr />
           </div>
         ))}
-        <h5>Transaction Log:</h5>
-        {files
-          .sort((a, b) => (a.createdAt > b.createdAt ? 1 : -1))
-          .map((file) => (
-            <div className="container" key={file.createdAt}>
-              <h2>
-                {file.title || "Untitled"} <b>|</b> Date:{" "}
-                {moment(file.createdAt).format("MM/DD/YY HH:mm:ss")}
-              </h2>
-            </div>
-          ))}
+          </div>
       </div>
-    </div>
   );
 }
