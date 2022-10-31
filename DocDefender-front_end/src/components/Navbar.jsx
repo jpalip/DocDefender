@@ -3,10 +3,9 @@ import useAuth from "../hooks/hooks";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import logo from "./icon.png";
 
-/*  Navbar function renamed to Taskbar in order to resolve naming
-    conflict with Navbar class in Bootstrap */
 export default function Taskbar() {
   const { getUsername, authed, logoutUser, isAdmin } = useAuth();
   const [username, setUsername] = useState("");
@@ -47,11 +46,21 @@ export default function Taskbar() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ms-auto fs-4">
-            <Nav.Link href="/">Home</Nav.Link>
+        <Nav className="me-auto fs-4">
             <Nav.Link href="/about">About</Nav.Link>
-            <Nav.Link href="/user">My Files</Nav.Link>
-            {admin || <></>}
+            <NavDropdown
+            title="My Files"
+            id="collasible-nav-dropdown"
+            className="dropdown-menu-dark">
+              <NavDropdown.Item href="/user">File Vault</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="/log">
+                Transaction Log
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+          <Nav>
+          {admin || <></>}
             {admin && (
               <Nav.Link
                 className="btn btn-danger"
@@ -64,7 +73,7 @@ export default function Taskbar() {
               </Nav.Link>
             )}
             <div></div>
-            {authed() || <Nav.Link href="/sign-in">Sign In</Nav.Link>}
+            {authed() || <Nav.Link className="fs-4" href="/sign-in">Sign In</Nav.Link>}
             {authed() && (
               <Nav.Link
                 style={{ height: "8%", marginTop: "1.5%", color: "white" }}

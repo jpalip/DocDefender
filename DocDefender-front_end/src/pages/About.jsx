@@ -6,7 +6,7 @@ export default function About() {
         id="header"
         className="p-5 text-center bg-light"
       >
-        <h2 className="mb-3">Frequently Asked Questions</h2>
+        <h2 className="fw-normal">Frequently Asked Questions</h2>
       </div>
       <div id="content-wrap">
         <div className="row">
@@ -140,6 +140,8 @@ export default function About() {
           </div>
         </div>
       </div>
+      <br/>
+      <br/>
       <footer id="footer">&#169;DocDefender 2022</footer>
     </div>
   );
