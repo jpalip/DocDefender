@@ -4,6 +4,8 @@ import About from "./pages/About";
 import SignIn from "./pages/Sign-In";
 import Register from "./pages/Register";
 import User from "./pages/User";
+import Admin from "./pages/Admin";
+import Terms from "./pages/Terms";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
