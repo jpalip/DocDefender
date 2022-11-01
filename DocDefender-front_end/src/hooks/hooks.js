@@ -2,6 +2,20 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 
+// const [ip, setIP] = useState("");
+
+// //creating function to load ip address from the API
+// const getData = async () => {
+//   const res = await axios.get("https://geolocation-db.com/json/");
+//   console.log(res.data);
+//   setIP(res.data.IPv4);
+// };
+
+// useEffect(() => {
+//   //passing getData method to the lifecycle method
+//   getData();
+// }, []);
+
 const API_URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:8393"
@@ -58,7 +72,19 @@ const useAuth = () => {
       });
   }
 
-  function loginRegister(username, password, type) {
+  function register(email, username, password, type) {
+    return axios
+      .post(`${API_URL}/${type}`, { email, username, password })
+      .then((response) => {
+        if (response.data.token) {
+          localStorage.setItem("token", response.data.token);
+        }
+
+        return response;
+      });
+  }
+
+  function login(username, password, type) {
     return axios
       .post(`${API_URL}/${type}`, { username, password })
       .then((response) => {
@@ -107,11 +133,11 @@ const useAuth = () => {
   }
 
   function loginUser(username, password) {
-    return loginRegister(username, password, "login");
+    return login(username, password, "login");
   }
 
-  function registerUser(username, password) {
-    return loginRegister(username, password, "register");
+  function registerUser(email, username, password) {
+    return register(email, username, password, "register");
   }
 
   function handleErrorResponse(error) {

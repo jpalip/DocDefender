@@ -3,12 +3,14 @@ import { prisma } from "../index.js";
 import jwt from "jsonwebtoken";
 
 export default async (req, res) => {
-  let { username, password } = req.body;
+  let { email, username, password } = req.body;
 
   username = username.toLowerCase();
 
-  if (!username || !password) {
-    return res.status(400).json({ error: "Missing username or password" });
+  if (!username || !password || !email) {
+    return res
+      .status(400)
+      .json({ error: "Missing username, password or email" });
   }
 
   if (username.length < 3 || username.length > 20) {
@@ -20,6 +22,13 @@ export default async (req, res) => {
       error: "Username must only contain alphanumeric characters",
     });
   }
+
+  //ADD CHECK FOR EMAIL VALIDATION
+  // if (!/\A[A-Z0-9+_.-]+@[A-Z0-9.-]+\Z/.test(email)) {
+  //   return res.json({
+  //     error: "Please enter a valid email",
+  //   });
+  // }
 
   if (password.length < 5) {
     return res.json({ error: "Password must be greater than 5 characters" });
@@ -35,6 +44,8 @@ export default async (req, res) => {
 
   const user = await prisma.user.create({
     data: {
+      email,
+      ipAddr: "0.0.0.0",
       username,
       password: await argon2.hash(password),
     },

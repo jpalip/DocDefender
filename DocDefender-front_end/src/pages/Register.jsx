@@ -9,8 +9,13 @@ export default function Register() {
 
   const register = (e) => {
     e.preventDefault();
+    console.log(e.target);
 
-    registerUser(e.target.username.value, e.target.password.value).then((r) => {
+    registerUser(
+      e.target.email.value,
+      e.target.username.value,
+      e.target.password.value
+    ).then((r) => {
       if (r.data.error) {
         alert(r.data.error);
       } else if (r.data.success) {
@@ -43,6 +48,7 @@ export default function Register() {
       <div
         style={{
           display: "block",
+          marginTop: "-2%",
           width: "100%",
         }}
         className="container-fluid"
