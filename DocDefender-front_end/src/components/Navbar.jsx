@@ -51,6 +51,7 @@ export default function Taskbar() {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/about">About</Nav.Link>
             <Nav.Link href="/user">My Files</Nav.Link>
+            <Nav.Link href="/terms">Terms</Nav.Link>
             {admin || <></>}
             {admin && (
               <Nav.Link
