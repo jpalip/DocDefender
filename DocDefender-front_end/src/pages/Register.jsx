@@ -9,7 +9,6 @@ export default function Register() {
 
   const register = (e) => {
     e.preventDefault();
-    console.log(e.target);
 
     registerUser(
       e.target.email.value,
