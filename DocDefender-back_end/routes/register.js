@@ -24,11 +24,11 @@ export default async (req, res) => {
   }
 
   //ADD CHECK FOR EMAIL VALIDATION
-  // if (!/\A[A-Z0-9+_.-]+@[A-Z0-9.-]+\Z/.test(email)) {
-  //   return res.json({
-  //     error: "Please enter a valid email",
-  //   });
-  // }
+  if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    return res.json({
+      error: "Please enter a valid email",
+    });
+  }
 
   if (password.length < 5) {
     return res.json({ error: "Password must be greater than 5 characters" });
@@ -40,6 +40,14 @@ export default async (req, res) => {
     })
   ) {
     return res.json({ error: "Username already exists" });
+  }
+
+  if (
+    await prisma.user.count({
+      where: { email },
+    })
+  ) {
+    return res.json({ error: "Email already in use" });
   }
 
   const user = await prisma.user.create({
