@@ -19,6 +19,25 @@ export default function Register() {
     });
   };
 
+  const checkSamePWD = () => {
+    if (
+      document.getElementById("password").value !==
+      document.getElementById("confirmpassword").value
+    ) {
+      document.getElementById("register").disabled = true;
+      document.getElementById("confpwd").innerHTML = "Passwords Do Not Match";
+      document.getElementById("confpwd").style.color = "red";
+    }
+    if (
+      document.getElementById("password").value ===
+      document.getElementById("confirmpassword").value
+    ) {
+      document.getElementById("register").disabled = false;
+      document.getElementById("confpwd").innerHTML = "Passwords Match";
+      document.getElementById("confpwd").style.color = "green";
+    }
+  };
+
   return (
     !authed() && (
       <div
@@ -41,6 +60,20 @@ export default function Register() {
                       Register a DocDefender account below.
                     </p>
                     <form onSubmit={register}>
+                      <div className="form-floating mb-3">
+                        <input
+                          type="email"
+                          id="email"
+                          autoComplete="ie-email"
+                          className="form-control"
+                        />
+                        <label
+                          className="form-label form-control1"
+                          htmlFor="email"
+                        >
+                          Email
+                        </label>
+                      </div>
                       <div className="form-floating mb-3">
                         <input
                           type="username"
@@ -69,9 +102,26 @@ export default function Register() {
                           Password
                         </label>
                       </div>
+                      <div className="form-floating mb-3">
+                        <input
+                          onChange={checkSamePWD}
+                          type="password"
+                          autoComplete="ie-confirmpassword"
+                          className="form-control"
+                          id="confirmpassword"
+                        />
+                        <label
+                          className="form-label form-control1"
+                          htmlFor="confirmpassword"
+                          id="confpwd"
+                        >
+                          Confirm Password
+                        </label>
+                      </div>
                       <button
                         type="submit"
                         className="btn btn-primary btn-block"
+                        id="register"
                       >
                         Register
                       </button>
