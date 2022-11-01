@@ -3,8 +3,9 @@ import { prisma } from "../index.js";
 import jwt from "jsonwebtoken";
 
 export default async (req, res) => {
-  let { email, username, password } = req.body;
+  let { email, username, password, ip } = req.body;
 
+  ip = ip.ip.toString();
   username = username.toLowerCase();
 
   if (!username || !password || !email) {
@@ -53,7 +54,7 @@ export default async (req, res) => {
   const user = await prisma.user.create({
     data: {
       email,
-      ipAddr: "0.0.0.0",
+      ipAddr: ip,
       username,
       password: await argon2.hash(password),
     },

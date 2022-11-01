@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/hooks";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -7,13 +9,28 @@ export default function Register() {
   const { authed, useRedirectIfAuthed, registerUser } = useAuth();
   useRedirectIfAuthed("/user");
 
+  //creating IP state
+  const [ip, setIP] = useState("");
+
+  //creating function to load ip address from the API
+  const getData = async () => {
+    const res = await axios.get("https://geolocation-db.com/json/");
+    setIP(res.data.IPv4);
+  };
+
+  useEffect(() => {
+    //passing getData method to the lifecycle method
+    getData();
+  }, []);
+
   const register = (e) => {
     e.preventDefault();
 
     registerUser(
       e.target.email.value,
       e.target.username.value,
-      e.target.password.value
+      e.target.password.value,
+      { ip }
     ).then((r) => {
       if (r.data.error) {
         alert(r.data.error);

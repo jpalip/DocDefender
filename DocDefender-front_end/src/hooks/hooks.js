@@ -72,9 +72,9 @@ const useAuth = () => {
       });
   }
 
-  function register(email, username, password, type) {
+  function register(email, username, password, ip, type) {
     return axios
-      .post(`${API_URL}/${type}`, { email, username, password })
+      .post(`${API_URL}/${type}`, { email, username, password, ip })
       .then((response) => {
         if (response.data.token) {
           localStorage.setItem("token", response.data.token);
@@ -136,8 +136,8 @@ const useAuth = () => {
     return login(username, password, "login");
   }
 
-  function registerUser(email, username, password) {
-    return register(email, username, password, "register");
+  function registerUser(email, username, password, ip) {
+    return register(email, username, password, ip, "register");
   }
 
   function handleErrorResponse(error) {
