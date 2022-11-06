@@ -66,8 +66,6 @@ export default function User() {
   };
 
   const confirmAddUserToFile = (...params) => {
-    console.log(params[0].selectedUser.value, params[1].selectedFile.value);
-
     addUserToFile(params[0], params[1]);
   };
 
@@ -279,7 +277,7 @@ export default function User() {
         <br />
         <button
           className="btn btn-primary"
-          onClick={() => confirmAddUserToFile({ selectedUser, selectedFile })}
+          onClick={() => confirmAddUserToFile(selectedUser, selectedFile)}
         >
           Confirm Add
         </button>

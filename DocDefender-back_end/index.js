@@ -7,6 +7,7 @@ import verifyAuth from "./middleware/verifyAuth.js";
 import files from "./routes/files.js";
 import searchUser from "./routes/searchUser.js";
 import getUsername from "./routes/getUsername.js";
+import getUsers from "./routes/getUsers.js";
 import isAdmin from "./routes/isAdmin.js";
 import searchFile from "./routes/searchFile.js";
 import upload from "./routes/upload.js";
@@ -46,6 +47,7 @@ const main = async () => {
   app.post("/deleteFile", verifyAuth, deleteFile);
   app.post("/addUserToFile", addUserToFile);
   app.get("/files", verifyAuth, files);
+  app.get("/users", verifyAuth, getUsers);
   app.get("/searchUser", searchUser);
   app.get("/getUsername", verifyAuth, getUsername);
   app.get("/isAdmin", verifyAuth, isAdmin);

@@ -1,4 +1,4 @@
-import { s3, prisma } from "../index.js";
+import { prisma } from "../index.js";
 
 export default async function (req, res) {
   const id = req.id;

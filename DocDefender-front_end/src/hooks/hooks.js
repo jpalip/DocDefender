@@ -185,6 +185,17 @@ const useAuth = () => {
       });
   }
 
+  function getUsers() {
+    return axios
+      .get(`${API_URL}/users`, {
+        headers: authHeader(),
+      })
+      .catch(handleErrorResponse)
+      .then((response) => {
+        return response;
+      });
+  }
+
   function authed() {
     return localStorage.getItem("token") !== null;
   }
@@ -224,6 +235,7 @@ const useAuth = () => {
     registerUser,
     logoutUser,
     getFiles,
+    getUsers,
     getUsername,
     isAdmin,
     searchUser,
