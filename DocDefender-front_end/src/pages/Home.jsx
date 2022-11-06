@@ -176,14 +176,13 @@ export default function Home() {
                     </li>
                     <li className="mb-2">
                       <i className="bi bi-check text-primary"></i>
-                      Can add other members to your friends list for easy sending and receiving
-                    </li>
-                    <li classname="mb-2">
-                      <i classname="bi bi-check text primary"></i>
+                      Can add other members to your friends list for easy
+                      sending and receiving
                     </li>
                     <li className="text-muted">
                       <i className="bi bi-x"></i>
-                      Complete Audit Log of access checks with additional security features
+                      Complete Audit Log of access checks with additional
+                      security features
                     </li>
                   </ul>
                 </div>
