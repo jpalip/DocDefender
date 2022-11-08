@@ -18,7 +18,17 @@ export default async function (req, res) {
       id: true,
       username: true,
       admin: true,
-      file: true,
+      file: {
+        select: {
+          title: true,
+          author: {
+            select: {
+              id: true,
+              username: true,
+            },
+          },
+        },
+      },
     },
   });
 

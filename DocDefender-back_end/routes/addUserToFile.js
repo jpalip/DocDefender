@@ -7,15 +7,6 @@ export default async (req, res) => {
     return res.status(400).send("Missing filename or username");
   }
 
-  const user = await prisma.user.findUnique({
-    where: {
-      id,
-    },
-    select: {
-      file: true,
-    },
-  });
-
   const fileId = await prisma.file.findMany({
     where: {
       title: req.body.filename,
@@ -24,16 +15,18 @@ export default async (req, res) => {
 
   var fileID = fileId[0].id;
 
-  console.log(user);
-
-  // const authorList = await prisma.file.update({
-  //   where: {
-  //     id: fileID,
-  //   },
-  //   data: {
-  //     author: { set: user },
-  //   },
-  // });
+  const user = await prisma.user.update({
+    where: {
+      username: req.body.username,
+    },
+    data: {
+      file: {
+        connect: {
+          id: fileID,
+        },
+      },
+    },
+  });
 
   return res.json({ success: "Successfully added user to file" });
 };

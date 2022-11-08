@@ -18,26 +18,30 @@ export default async (req, res) => {
         // The Following code prevents duplicate file names - It adds (1),(2),(3),...etc to the filename if it exists already, then uploads it
         var fileExists = await prisma.file.count({
           where: {
-            title: filename,
+            title: file.originalname,
           },
         });
 
-        var title = getFileName(file.originalname);
-        var fileType = getFileType(file.originalname);
+        if (fileExists > 0) {
+          var title = getFileName(file.originalname);
+          var fileType = getFileType(file.originalname);
 
-        var count = 1;
-        while (fileExists > 0) {
-          title += "(" + count.toString() + ")";
-          filename = title + "." + fileType;
-          count++;
-          fileExists = await prisma.file.count({
-            where: {
-              title: filename,
-            },
-          });
+          var count = 1;
+          while (fileExists > 0) {
+            const newTitle = title + "(" + count.toString() + ")";
+            filename = newTitle + "." + fileType;
+            count++;
+            fileExists = await prisma.file.count({
+              where: {
+                title: filename,
+              },
+            });
+          }
+        } else {
+          filename = file.originalname;
         }
 
-        cb(null, filename); // file.originalname is the name uploaded to Bucket
+        cb(null, filename);
       },
     }),
   }).single("file");

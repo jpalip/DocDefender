@@ -66,7 +66,14 @@ export default function User() {
   };
 
   const confirmAddUserToFile = (...params) => {
-    addUserToFile(params[0], params[1]);
+    addUserToFile(params[0], params[1]).then((r) => {
+      if (r.data.success) {
+        if (r.data.success) {
+          alert(r.data.success);
+          resetSelection();
+        }
+      }
+    });
   };
 
   const onDeleteFile = (id) => {
@@ -128,7 +135,9 @@ export default function User() {
   };
 
   const resetSelection = (e) => {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     setFilenameDisabled(false);
     setUsernameDisabled(false);
     setSelectedFile("");
