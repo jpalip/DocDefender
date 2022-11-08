@@ -7,7 +7,7 @@ export default async (req, res) => {
 
   const getFileType = (param) => param.split(".").pop();
   const getFileName = (param) =>
-    param.substring(0, param.length - getFileType(param).length);
+    param.substring(0, param.length - getFileType(param).length - 1);
 
   const upload = multer({
     storage: multerS3({
@@ -24,8 +24,6 @@ export default async (req, res) => {
 
         var title = getFileName(file.originalname);
         var fileType = getFileType(file.originalname);
-
-        console.log(title, fileType);
 
         var count = 1;
         while (fileExists > 0) {
