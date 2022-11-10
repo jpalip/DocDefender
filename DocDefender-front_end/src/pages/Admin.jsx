@@ -20,15 +20,33 @@ export default function About() {
 
   return (
     <div>
-      {users.map((file, i) => (
-        <div className="container" key={i}>
-          <h2>
-            Username: {users[i].username || "N/A"} | Admin:{" "}
-            {users[i].admin || "N/A"}
-          </h2>
-          <hr />
-        </div>
-      ))}
+      <table className="admin-panel">
+        <tr className="admin-panel">
+          <th></th>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Username</th>
+          <th>IP Address</th>
+          <th>Admin</th>
+        </tr>
+        {users.map((user, i) => (
+          <>
+            <tr className="admin-panel">
+              <td>
+                <input type="radio" name="" value="2" />
+              </td>
+              <td>{user.id} </td>
+              <td>{user.email} </td>
+              <td>{user.username} </td>
+              <td>{user.ipAddr}</td>
+              <td>{user.admin} </td>
+            </tr>
+          </>
+        ))}
+      </table>
+      <hr />
+      <button>Delete User</button>
+      <button>Ban User</button>
     </div>
   );
 }

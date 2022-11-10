@@ -64,7 +64,7 @@ export default function Taskbar() {
                 Admin
               </Nav.Link>
             )}
-            <div></div>
+            <div className="spacer"></div>
             {authed() || <Nav.Link href="/sign-in">Sign In</Nav.Link>}
             {authed() && (
               <Nav.Link
