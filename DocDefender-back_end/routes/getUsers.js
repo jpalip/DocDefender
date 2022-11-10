@@ -16,8 +16,10 @@ export default async function (req, res) {
   const users = await prisma.user.findMany({
     select: {
       id: true,
+      email: true,
       username: true,
       admin: true,
+      ipAddr: true,
       file: {
         select: {
           title: true,
