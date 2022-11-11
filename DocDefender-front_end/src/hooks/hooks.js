@@ -2,20 +2,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 
-// const [ip, setIP] = useState("");
-
-// //creating function to load ip address from the API
-// const getData = async () => {
-//   const res = await axios.get("https://geolocation-db.com/json/");
-//   console.log(res.data);
-//   setIP(res.data.IPv4);
-// };
-
-// useEffect(() => {
-//   //passing getData method to the lifecycle method
-//   getData();
-// }, []);
-
 const API_URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:8393"
@@ -40,8 +26,8 @@ const useAuth = () => {
     window.location.reload();
   }
 
-  function addUserToFile(username, filename) {
-    return axios
+  async function addUserToFile(username, filename) {
+    const { data } = await axios
       .post(
         `${API_URL}/addUserToFile`,
         { username, filename },
@@ -49,14 +35,13 @@ const useAuth = () => {
           headers: authHeader(),
         }
       )
-      .catch(handleErrorResponse)
-      .then((response) => {
-        return response;
-      });
+      .catch(handleErrorResponse);
+
+    return data;
   }
 
-  function deleteFile(fileId) {
-    return axios
+  async function deleteFile(fileId) {
+    const { data } = await axios
       .post(
         `${API_URL}/deleteFile`,
         {
@@ -66,101 +51,99 @@ const useAuth = () => {
           headers: authHeader(),
         }
       )
-      .catch(handleErrorResponse)
-      .then((response) => {
-        return response;
-      });
+      .catch(handleErrorResponse);
+
+    return data;
   }
 
-  function register(email, username, password, ip, type) {
-    return axios
-      .post(`${API_URL}/${type}`, { email, username, password, ip })
-      .then((response) => {
-        if (response.data.token) {
-          localStorage.setItem("token", response.data.token);
-        }
+  async function register(email, username, password, type) {
+    const { data } = await axios.post(`${API_URL}/${type}`, {
+      email,
+      username,
+      password,
+    });
 
-        return response;
-      });
+    if (data.token) {
+      localStorage.setItem("token", data.token);
+    }
+
+    return data;
   }
 
-  function login(username, password, type) {
-    return axios
-      .post(`${API_URL}/${type}`, { username, password })
-      .then((response) => {
-        if (response.data.token) {
-          localStorage.setItem("token", response.data.token);
-        }
+  async function login(username, password, type) {
+    const { data } = await axios.post(`${API_URL}/${type}`, {
+      username,
+      password,
+    });
 
-        return response;
-      });
+    if (data.token) {
+      localStorage.setItem("token", data.token);
+    }
+
+    return data;
   }
 
-  function uploadFile(selectedFile) {
+  async function uploadFile(selectedFile) {
     let formData = new FormData();
     formData.append("file", selectedFile);
-    return axios
-      .post(`${API_URL}/upload`, formData, {
-        headers: {
-          ...authHeader(),
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-      .then((response) => {
-        return response;
-      });
+
+    const { data } = await axios.post(`${API_URL}/upload`, formData, {
+      headers: {
+        ...authHeader(),
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    return data;
   }
 
-  function searchUser(username) {
-    return axios
-      .get(`${API_URL}/searchUser?username=${username}`)
-      .then((response) => {
-        return response;
-      });
+  async function searchUser(username) {
+    const { data } = await axios.get(
+      `${API_URL}/searchUser?username=${username}`
+    );
+
+    return data;
   }
 
-  function searchFile(title) {
-    return axios
-      .get(`${API_URL}/searchFile?filename=${title}`, {
+  async function searchFile(title) {
+    const { data } = await axios.get(
+      `${API_URL}/searchFile?filename=${title}`,
+      {
         headers: authHeader(),
-      })
-      .then((response) => {
-        return response;
-      });
+      }
+    );
+
+    return data;
   }
 
-  function loginUser(username, password) {
-    return login(username, password, "login");
+  async function loginUser(username, password) {
+    return await login(username, password, "login");
   }
 
-  function registerUser(email, username, password, ip) {
-    return register(email, username, password, ip, "register");
+  async function registerUser(email, username, password) {
+    return await register(email, username, password, "register");
   }
 
   function handleErrorResponse(error) {
-    if (error.response && error.response.status === 401) {
+    if (error.response && error.response.status === 403) {
       logoutUser();
     }
 
     return error;
   }
 
-  function getUsername() {
-    return axios
+  async function getUsername() {
+    const { data } = await axios
       .get(`${API_URL}/getUsername`, {
         headers: authHeader(),
       })
-      .catch(handleErrorResponse)
-      .then((response) => {
-        return response;
-      });
+      .catch(handleErrorResponse);
+
+    return data.username;
   }
 
-  function requestView(filename, fileId) {
-    return axios
+  async function requestView(filename, fileId) {
+    const { data } = await axios
       .get(`${API_URL}/requestView`, {
         headers: authHeader(),
         params: {
@@ -168,47 +151,43 @@ const useAuth = () => {
           fileId,
         },
       })
-      .catch(handleErrorResponse)
-      .then((response) => {
-        return response;
-      });
+      .catch(handleErrorResponse);
+
+    return data;
   }
 
-  function getFiles() {
-    return axios
+  async function getFiles() {
+    const { data } = await axios
       .get(`${API_URL}/files`, {
         headers: authHeader(),
       })
-      .catch(handleErrorResponse)
-      .then((response) => {
-        return response;
-      });
+      .catch(handleErrorResponse);
+
+    return data;
   }
 
-  function getUsers() {
-    return axios
+  async function getUsers() {
+    const { data } = await axios
       .get(`${API_URL}/users`, {
         headers: authHeader(),
       })
-      .catch(handleErrorResponse)
-      .then((response) => {
-        return response;
-      });
+      .catch(handleErrorResponse);
+
+    return data;
   }
 
   function authed() {
     return localStorage.getItem("token") !== null;
   }
 
-  function isAdmin(username) {
-    return axios
-      .get(`${API_URL}/isAdmin?=${username}`, {
+  async function isAdmin() {
+    const { data } = await axios
+      .get(`${API_URL}/isAdmin`, {
         headers: authHeader(),
       })
-      .catch(handleErrorResponse)
-      .then((response) => {
-        return response;
-      });
+      .catch(handleErrorResponse);
+
+    return data.isAdmin;
   }
 
   function useRedirectIfAuthed(href) {

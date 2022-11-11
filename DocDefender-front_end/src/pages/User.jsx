@@ -3,6 +3,8 @@ import useAuth from "../hooks/hooks";
 import moment from "moment";
 import FilePreview from "../components/FilePreview";
 
+const UNKNOWN_ERR = "Unknown error occurred";
+
 export default function User() {
   const [files, setFiles] = useState([]);
   const [userMatches, setUserMatches] = useState([]);
@@ -31,63 +33,50 @@ export default function User() {
 
   useEffect(() => {
     if (authed()) {
-      getFiles().then((r) => {
-        if (r.data.success) {
-          setFiles(r.data.success);
-        }
-      });
+      (async () => {
+        const files = (await getFiles()).success;
+        files && setFiles(files);
+      })();
     }
-    // eslint-disable-next-line
-  }, []);
+  }, [getFiles, files, authed]);
 
-  const fileUpload = (e) => {
+  const fileUpload = async (e) => {
     e.preventDefault();
 
     if (e.target[0].files.length < 1) {
       return alert("Please select a file");
     }
-    uploadFile(e.target[0].files[0]).then((r) => {
-      if (r.data.error) {
-        alert(r.data.error);
-      } else if (r.data.success) {
-        alert(r.data.success);
-        window.location.reload();
-      }
-    });
+
+    const { success, error } = await uploadFile(e.target[0].files[0]);
+
+    alert(success || error || UNKNOWN_ERR);
   };
 
-  const reqView = (...params) => {
-    requestView(params[0], params[1]).then((r) => {
-      if (r.data.success) {
-        alert(r.data.success);
-        window.location.reload();
-      }
-    });
+  const reqView = async (...params) => {
+    const { success, error } = await requestView(params[0], params[1]);
+
+    success && window.location.reload();
+    error && alert(error);
   };
 
-  const confirmAddUserToFile = (...params) => {
-    addUserToFile(params[0], params[1]).then((r) => {
-      if (r.data.success) {
-        if (r.data.success) {
-          alert(r.data.success);
-          resetSelection();
-        }
-      }
-    });
+  const confirmAddUserToFile = async (...params) => {
+    const { success } = await addUserToFile(params[0], params[1]);
+
+    alert(success || UNKNOWN_ERR);
+    success && resetSelection();
   };
 
-  const onDeleteFile = (id) => {
-    deleteFile(id).then((r) => {
-      if (r.data.error) {
-        alert(r.data.error);
-      } else if (r.data.success) {
-        alert(r.data.success);
-        window.location.reload(false);
-      }
-    });
+  const onDeleteFile = async (id) => {
+    const { success, error } = await deleteFile(id);
+
+    if (success) {
+      alert(success);
+      window.location.reload();
+    }
+    error && alert(error);
   };
 
-  const onChangeUsers = (e) => {
+  const onChangeUsers = async (e) => {
     setUsernameField(e.target.value);
 
     if (!e.target.value.trim()) {
@@ -95,14 +84,15 @@ export default function User() {
       return setUserMatches([]);
     }
 
-    searchUser(e.target.value).then((r) => {
-      setUserMatches(r.data.success);
-    });
+    const { success } = await searchUser(e.target.value);
 
-    setShowUserbox(true);
+    if (success) {
+      setUserMatches(success);
+      setShowUserbox(true);
+    }
   };
 
-  const onChangeFiles = (e) => {
+  const onChangeFiles = async (e) => {
     setFilenameField(e.target.value);
 
     if (!e.target.value.trim()) {
@@ -110,11 +100,12 @@ export default function User() {
       return setFileMatches([]);
     }
 
-    searchFile(e.target.value).then((r) => {
-      setFileMatches(r.data.success);
-    });
+    const { success } = await searchFile(e.target.value);
 
-    setShowFilebox(true);
+    if (success) {
+      setFileMatches(success);
+      setShowFilebox(true);
+    }
   };
 
   // Function to lock text box after file selection

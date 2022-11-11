@@ -46,14 +46,13 @@ export default async (req, res) => {
     }),
   }).single("file");
 
-  if (!upload.key) {
-    return res.json({ error: "Missing or Invalid file key" });
-  }
-
   upload(req, res, async function (err) {
     if (err) {
-      console.log(err);
       return res.json({ error: err.message });
+    }
+
+    if (!filename) {
+      return res.json({ error: "Missing or Invalid filename" });
     }
 
     var params = {

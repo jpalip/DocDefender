@@ -7,16 +7,16 @@ export default function SignIn() {
   const { authed, useRedirectIfAuthed, loginUser } = useAuth();
   useRedirectIfAuthed("/user");
 
-  const login = (e) => {
+  const login = async (e) => {
     e.preventDefault();
 
-    loginUser(e.target.username.value, e.target.password.value).then((r) => {
-      if (r.data.error) {
-        alert(r.data.error);
-      } else if (r.data.success) {
-        navigate("/user");
-      }
-    });
+    const { success, error } = await loginUser(
+      e.target.username.value,
+      e.target.password.value
+    );
+
+    success && navigate("/user");
+    error && alert(error);
   };
 
   return (

@@ -3,10 +3,9 @@ import { prisma } from "../index.js";
 import jwt from "jsonwebtoken";
 
 export default async (req, res) => {
-  let { email, username, password, ip } = req.body;
+  let { email, username, password } = req.body;
 
-  ip = ip.ip.toString();
-  username = username.toLowerCase();
+  const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
 
   if (!username || !password || !email) {
     return res

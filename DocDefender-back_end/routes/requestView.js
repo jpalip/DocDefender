@@ -28,7 +28,7 @@ export default async (req, res) => {
 
   // Fixes security vulnerability - only the owner of the image can request access
   if (result.authorId != req.id) {
-    return res.status(401);
+    return res.json({ error: "Insufficient permissions to request view" });
   }
 
   await prisma.file.update({

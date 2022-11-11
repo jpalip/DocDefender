@@ -16,14 +16,10 @@ export default function Taskbar() {
     if (!authed()) {
       return;
     }
-    getUsername().then((r) => {
-      if (r.data) {
-        setUsername(r.data.username);
-      }
-    });
-    isAdmin(username).then((r) => {
-      setAdmin(r.data.isAdmin);
-    });
+    (async () => {
+      setUsername(await getUsername());
+      setAdmin(await isAdmin());
+    })();
   }, [getUsername, isAdmin, username, authed]);
 
   return (
@@ -58,6 +54,8 @@ export default function Taskbar() {
                 className="btn btn-danger"
                 style={{
                   color: "white",
+                  height: "5%",
+                  marginTop: "1%",
                 }}
                 href="/admin"
               >

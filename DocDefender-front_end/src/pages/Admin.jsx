@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../hooks/hooks";
 
 export default function About() {
@@ -9,44 +9,51 @@ export default function About() {
 
   useEffect(() => {
     if (authed()) {
-      getUsers().then((r) => {
-        if (r.data.success) {
-          setUsers(r.data.success);
-        }
-      });
+      (async () => {
+        const users = (await getUsers()).success;
+        users && setUsers(users);
+      })();
     }
-    // eslint-disable-next-line
-  }, []);
+  }, [getUsers, users, authed]);
 
   return (
     <div>
       <table className="admin-panel">
-        <tr className="admin-panel">
-          <th></th>
-          <th>ID</th>
-          <th>Email</th>
-          <th>Username</th>
-          <th>IP Address</th>
-          <th>Admin</th>
-        </tr>
-        {users.map((user, i) => (
-          <>
-            <tr className="admin-panel">
-              <td>
-                <input type="radio" name="" value="2" />
-              </td>
-              <td>{user.id} </td>
-              <td>{user.email} </td>
-              <td>{user.username} </td>
-              <td>{user.ipAddr}</td>
-              <td>{user.admin} </td>
-            </tr>
-          </>
-        ))}
+        <tbody>
+          <tr className="admin-panel">
+            <th></th>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>IP Address</th>
+            <th>Admin</th>
+          </tr>
+          {users.map((user, i) => (
+            <React.Fragment key={i}>
+              <tr className="admin-panel">
+                <td>
+                  <input type="radio" name="" value="2" />
+                </td>
+                <td>{user.id} </td>
+                <td>{user.email} </td>
+                <td>{user.username} </td>
+                <td>{user.ipAddr}</td>
+                <td>{user.admin ? "✔" : "✘"} </td>
+              </tr>
+            </React.Fragment>
+          ))}
+        </tbody>
       </table>
       <hr />
-      <button>Delete User</button>
-      <button>Ban User</button>
+      <button style={{ margin: "1px" }} className="btn btn-danger">
+        Delete User
+      </button>
+      <button style={{ margin: "1px" }} className="btn btn-danger">
+        Ban User
+      </button>
+      <button style={{ margin: "1px" }} className="btn btn-danger">
+        Disable Upload{" "}
+      </button>
     </div>
   );
 }

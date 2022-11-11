@@ -5,6 +5,9 @@ export default async (req, res) => {
 
   const user = await prisma.user.findUnique({
     where: { id },
+    select: {
+      username: true,
+    },
   });
 
   res.json({ username: user.username });
