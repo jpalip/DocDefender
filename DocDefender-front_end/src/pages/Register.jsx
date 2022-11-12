@@ -58,10 +58,16 @@ export default function Register() {
                     <h3 className="display-4">
                       <b>Register</b>
                     </h3>
-                    <p className="text-muted mb-4">
-                      Register a DocDefender account below.
+                    <p className="text-muted">
+                      <div>Register a DocDefender account below.</div>
+                      <div>
+                        By registering, you agree to{" "}
+                        <a href="https://www.docdefender.org/terms">
+                          these terms.
+                        </a>
+                      </div>
                     </p>
-                    <form onSubmit={register}>
+                    <form onSubmit={register} style={{ minWidth: "20vw" }}>
                       <div className="form-floating mb-3">
                         <input
                           type="email"
@@ -122,7 +128,7 @@ export default function Register() {
                       </div>
                       <button
                         type="submit"
-                        className="btn btn-primary btn-block"
+                        className="btn btn-primary btn-block mt-1"
                         id="register"
                       >
                         Register
