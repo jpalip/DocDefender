@@ -45,21 +45,23 @@ export default function Taskbar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto fs-4">
             <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/user">Files</Nav.Link>
             <Nav.Link href="/about">About</Nav.Link>
-            <Nav.Link href="/user">My Files</Nav.Link>
             <Nav.Link href="/terms">Terms</Nav.Link>
             {admin || <></>}
             {admin && (
               <Nav.Link
-                className="btn btn-danger"
+                className="btn btn-danger fs-6"
                 style={{
+                  height: "8%",
+                  marginTop: "1.5%",
                   color: "white",
-                  height: "5%",
-                  marginTop: "1%",
+                  fontSize: "large",
                 }}
+                variant="danger"
                 href="/admin"
               >
-                Admin
+                <b>Admin</b>
               </Nav.Link>
             )}
             <div className="spacer"></div>
@@ -69,7 +71,6 @@ export default function Taskbar() {
                 style={{ height: "8%", marginTop: "1.5%", color: "white" }}
                 className="btn btn-primary fs-6"
                 variant="primary"
-                size="lg"
                 onClick={logoutUser}
               >
                 Logout: {username}

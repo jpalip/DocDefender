@@ -21,7 +21,7 @@ export default function Terms() {
       </p>
       <p>
         <span style={{ textDecoration: "underline" }}>
-          <strong>Introduction&nbsp;</strong>
+          <strong>Introduction</strong>
         </span>
       </p>
       <p>
@@ -43,7 +43,7 @@ export default function Terms() {
       </p>
       <p>
         <span style={{ textDecoration: "underline" }}>
-          <strong>License to use Website&nbsp;</strong>
+          <strong>License to use Website</strong>
         </span>
       </p>
       <p>
@@ -78,7 +78,7 @@ export default function Terms() {
       </p>
       <p>
         <span style={{ textDecoration: "underline" }}>
-          <strong>Acceptable use&nbsp;</strong>
+          <strong>Acceptable use</strong>
         </span>
       </p>
       <p style={{ textAlign: "justify" }}>
@@ -107,8 +107,10 @@ export default function Terms() {
       <p>
         You must not use this website for any purposes related to marketing
         without DocDefender&rsquo;s express written consent.&nbsp;{" "}
+      </p>
+      <p>
         <span style={{ textDecoration: "underline" }}>
-          <strong>Restricted access&nbsp;</strong>
+          <strong>Restricted access</strong>
         </span>
       </p>
       <p>
@@ -126,8 +128,10 @@ export default function Terms() {
       <p>
         DocDefender may disable your user ID and password in www.DocDefender.org
         at sole discretion without notice or explanation.{" "}
+      </p>
+      <p>
         <span style={{ textDecoration: "underline" }}>
-          <strong>User content&nbsp;</strong>
+          <strong>User content</strong>
         </span>
       </p>
       <p>
@@ -155,7 +159,7 @@ export default function Terms() {
       </p>
       <p>
         <span style={{ textDecoration: "underline" }}>
-          <strong>No warranties&nbsp;</strong>
+          <strong>No warranties</strong>
         </span>
       </p>
       <p>
@@ -196,9 +200,11 @@ export default function Terms() {
       </ul>
       <p>
         These limitations of liability apply even if DocDefender has been
-        expressly advised of the potential loss.{" "}
+        expressly advised of the potential loss. &nbsp;
+      </p>
+      <p>
         <span style={{ textDecoration: "underline" }}>
-          <strong>Reasonableness&nbsp;</strong>
+          <strong>Reasonableness</strong>
         </span>
       </p>
       <p>
@@ -266,8 +272,10 @@ export default function Terms() {
       <p>
         You may not transfer, sub-contract or otherwise deal with your rights
         and/or obligations under these terms and conditions.&nbsp;{" "}
+      </p>
+      <p>
         <span style={{ textDecoration: "underline" }}>
-          <strong>Severability&nbsp;</strong>
+          <strong>Severability</strong>
         </span>
       </p>
       <p style={{ textAlign: "justify" }}>
