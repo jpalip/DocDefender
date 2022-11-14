@@ -1,8 +1,13 @@
+import { useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/hooks";
 
 export default function Register() {
   const navigate = useNavigate();
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [match, setMatch] = useState(false);
 
   const { authed, useRedirectIfAuthed, registerUser } = useAuth();
   useRedirectIfAuthed("/user");
@@ -10,34 +15,33 @@ export default function Register() {
   const register = async (e) => {
     e.preventDefault();
 
+    const { email, username } = e.target.elements;
+
+    if (!email.value || !username.value || !password) {
+      return alert("Please fill out all fields");
+    }
+
     const { success, error } = await registerUser(
-      e.target.email.value,
-      e.target.username.value,
-      e.target.password.value
+      email.value,
+      username.value,
+      password
     );
 
     success && navigate("/user");
     error && alert(error);
   };
 
-  const checkSamePWD = () => {
-    if (
-      document.getElementById("password").value !==
-      document.getElementById("confirmpassword").value
-    ) {
-      document.getElementById("register").disabled = true;
-      document.getElementById("confpwd").innerHTML = "Passwords Do Not Match";
-      document.getElementById("confpwd").style.color = "red";
-    }
-    if (
-      document.getElementById("password").value ===
-      document.getElementById("confirmpassword").value
-    ) {
-      document.getElementById("register").disabled = false;
-      document.getElementById("confpwd").innerHTML = "Passwords Match";
-      document.getElementById("confpwd").style.color = "green";
-    }
+  const onPasswordChange = (e) => {
+    setPassword(e.target.value);
   };
+
+  const onConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
+  useEffect(() => {
+    setMatch(password === confirmPassword && password.length > 0);
+  }, [password, confirmPassword]);
 
   return (
     !authed() && (
@@ -58,10 +62,16 @@ export default function Register() {
                     <h3 className="display-4">
                       <b>Register</b>
                     </h3>
-                    <p className="text-muted mb-4">
-                      Register a DocDefender account below.
+                    <p className="text-muted">
+                      <div>Register a DocDefender account below.</div>
+                      <div>
+                        By registering, you agree to{" "}
+                        <a href="https://www.docdefender.org/terms">
+                          these terms.
+                        </a>
+                      </div>
                     </p>
-                    <form onSubmit={register}>
+                    <form onSubmit={register} style={{ minWidth: "20vw" }}>
                       <div className="form-floating mb-3">
                         <input
                           type="email"
@@ -96,6 +106,7 @@ export default function Register() {
                           id="password"
                           autoComplete="ie-password"
                           className="form-control"
+                          onChange={onPasswordChange}
                         />
                         <label
                           className="form-label form-control1"
@@ -106,24 +117,35 @@ export default function Register() {
                       </div>
                       <div className="form-floating mb-3">
                         <input
-                          onChange={checkSamePWD}
+                          onChange={onConfirmPasswordChange}
                           type="password"
                           autoComplete="ie-confirmpassword"
                           className="form-control"
                           id="confirmpassword"
                         />
                         <label
-                          className="form-label form-control1"
+                          className={`form-label form-control1 ${
+                            confirmPassword.length > 0
+                              ? match
+                                ? "text-success"
+                                : "text-danger"
+                              : ""
+                          }`}
                           htmlFor="confirmpassword"
                           id="confpwd"
                         >
-                          Confirm Password
+                          {confirmPassword.length > 0
+                            ? match
+                              ? "Passwords Match"
+                              : "Passwords Do Not Match"
+                            : "Confirm Password"}
                         </label>
                       </div>
                       <button
                         type="submit"
-                        className="btn btn-primary btn-block"
+                        className="btn btn-primary btn-block mt-1"
                         id="register"
+                        disabled={!match}
                       >
                         Register
                       </button>

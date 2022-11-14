@@ -41,7 +41,7 @@ export default function SignIn() {
                     <p className="text-muted mb-4">
                       Login to your DocDefender account below.
                     </p>
-                    <form onSubmit={login}>
+                    <form onSubmit={login} style={{ minWidth: "20vw" }}>
                       {/* email input */}
                       <div className="form-floating mb-3">
                         <input
@@ -76,7 +76,7 @@ export default function SignIn() {
                       </div>
                       <button
                         type="submit"
-                        className="btn btn-primary btn-block"
+                        className="btn btn-primary btn-block mt-1"
                       >
                         Sign In
                       </button>
