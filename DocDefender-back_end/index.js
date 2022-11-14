@@ -12,6 +12,7 @@ import isAdmin from "./routes/isAdmin.js";
 import searchFile from "./routes/searchFile.js";
 import upload from "./routes/upload.js";
 import deleteFile from "./routes/deleteFile.js";
+import deleteUser from "./routes/deleteUser.js";
 import requestView from "./routes/requestView.js";
 import addUserToFile from "./routes/addUserToFile.js";
 import aws from "aws-sdk";
@@ -45,6 +46,7 @@ const main = async () => {
   app.post("/register", register);
   app.post("/upload", verifyAuth, upload);
   app.post("/deleteFile", verifyAuth, deleteFile);
+  app.post("/deleteUser", verifyAuth, deleteUser);
   app.post("/addUserToFile", addUserToFile);
   app.get("/files", verifyAuth, files);
   app.get("/users", verifyAuth, getUsers);

@@ -56,6 +56,22 @@ const useAuth = () => {
     return data;
   }
 
+  async function deleteUser(username) {
+    const { data } = await axios
+      .post(
+        `${API_URL}/deleteUser`,
+        {
+          username,
+        },
+        {
+          headers: authHeader(),
+        }
+      )
+      .catch(handleErrorResponse);
+
+    return data;
+  }
+
   async function register(email, username, password, type) {
     const { data } = await axios.post(`${API_URL}/${type}`, {
       email,
@@ -222,6 +238,7 @@ const useAuth = () => {
     uploadFile,
     addUserToFile,
     deleteFile,
+    deleteUser,
     requestView,
   };
 };
