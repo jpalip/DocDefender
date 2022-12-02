@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useAuth from "../hooks/hooks";
 
-export default function About() {
+export default function Admin() {
   const [users, setUsers] = useState([]);
 
   const { useRedirectIfNotAuthed, getUsers, authed } = useAuth();
